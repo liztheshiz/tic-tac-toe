@@ -1,0 +1,9 @@
+.game-board {
+    display: grid;
+    grid-template-columns: 100px 100px 100px;
+}
+
+.game-board__square {
+    border: 1px black solid;
+    height: 100px;
+}
