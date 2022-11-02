@@ -1,12 +1,14 @@
+import { Link } from 'react-router-dom';
+
 export default function Home() {
     return (
-        <div className="App">
-            <div className="main-title">
+        <div className="Home">
+            <div className="main-title" data-testid="main-title">
                 <div>TIC.</div>
                 <div>TAC.</div>
                 <div>TOE.</div>
-                <button className="start-button" data-testid="start-button">X</button>
-                <button className="start-button" data-testid="start-button">O</button>
+                <Link to="/game" state={{ team: "x" }}><button className="start-button" data-testid="start-button">X</button></Link>
+                <Link to="/game" state={{ team: "o" }}><button className="start-button" data-testid="start-button">O</button></Link>
             </div>
         </div>
     )
