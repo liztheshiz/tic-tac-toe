@@ -8,8 +8,8 @@ function App() {
                 <div>TIC.</div>
                 <div>TAC.</div>
                 <div>TOE.</div>
-                <button className="start-button" data-testid="start-button" onClick={handleStart}>X</button>
-                <button className="start-button" data-testid="start-button" onClick={handleStart}>O</button>
+                <button className="start-button" data-testid="start-button">X</button>
+                <button className="start-button" data-testid="start-button">O</button>
             </div>
         </div>
     );
