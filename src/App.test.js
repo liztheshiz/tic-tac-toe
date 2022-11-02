@@ -21,25 +21,24 @@ describe('<App /> component', () => {
 });
 
 // GameView component
-/*describe('<GameView /> component', () => {
-    beforeEach(() => {
-        render(<GameView />);
+describe('<GameView /> component', () => {
+    beforeAll(() => {
+        render(<App />);
+        const buttons = screen.getAllByTestId('start-button');
+        const button = buttons[0];
+
+        userEvent.click(button);
     });
 
     test('render game board', () => {
         expect(screen.getByTestId('game-board')).toBeInTheDocument;
     })
-});*/
+});
 
 // Integration tests
 describe('<App /> integration', () => {
-    let AppWrapper;
-    beforeAll(() => {
-        AppWrapper = render(<App />);
-    })
-
     beforeEach(() => {
-        AppWrapper.rerender(<App />);
+        render(<App />);
     });
 
     test('start buttons open game view', () => {
@@ -49,13 +48,5 @@ describe('<App /> integration', () => {
         userEvent.click(button);
         const GameView = screen.getByTestId('game-view');
         expect(GameView).toBeInTheDocument;
-    });
-
-    test('render game board', () => {
-        const buttons = screen.getAllByTestId('start-button');
-        const button = buttons[0];
-
-        userEvent.click(button);
-        expect(screen.getByTestId('game-board')).toBeInTheDocument;
     });
 });
