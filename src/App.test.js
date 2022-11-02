@@ -1,7 +1,9 @@
-import { render, screen } from '@testing-library/react';
+import { render, rerender, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import App from './components/app/App';
 
 // Unit tests
+// App/Home component
 describe('<App /> component', () => {
     beforeEach(() => {
         render(<App />);
@@ -16,6 +18,29 @@ describe('<App /> component', () => {
         const buttons = screen.getAllByTestId('start-button');
         expect(buttons).toHaveLength(2);
     });
+});
+
+// GameView component
+/*describe('<GameView /> component', () => {
+    beforeEach(() => {
+        render(<GameView />);
+    });
+
+    test('render game board', () => {
+        expect(screen.getByTestId('game-board')).toBeInTheDocument;
+    })
+});*/
+
+// Integration tests
+describe('<App /> integration', () => {
+    let AppWrapper;
+    beforeAll(() => {
+        AppWrapper = render(<App />);
+    })
+
+    beforeEach(() => {
+        AppWrapper.rerender(<App />);
+    });
 
     test('start buttons open game view', () => {
         const buttons = screen.getAllByTestId('start-button');
@@ -24,5 +49,13 @@ describe('<App /> component', () => {
         userEvent.click(button);
         const GameView = screen.getByTestId('game-view');
         expect(GameView).toBeInTheDocument;
+    });
+
+    test('render game board', () => {
+        const buttons = screen.getAllByTestId('start-button');
+        const button = buttons[0];
+
+        userEvent.click(button);
+        expect(screen.getByTestId('game-board')).toBeInTheDocument;
     });
 });
