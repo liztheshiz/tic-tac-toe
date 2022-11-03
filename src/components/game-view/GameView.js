@@ -7,15 +7,20 @@ import './GameView.css';
 export default function GameView() {
     // Import team choice from Link in Home
     const location = useLocation();
-    const { team } = location.state;
+    const { team, opponent } = location.state;
 
     const handleClick = (e) => {
         const square = e.target;
         if (!square.innerText) square.innerText = `${team}`;
+        aiTurn();
     }
 
     const aiTurn = () => {
         console.log('ai turn!');
+        const squares = document.getElementsByClassName('game-board__square empty');
+        const num = Math.floor(Math.random() * (10));
+
+        squares.item(num).innerText = opponent;
     }
 
     useEffect(() => {
@@ -23,24 +28,25 @@ export default function GameView() {
         if (team == 'O') {
             aiTurn();
         }
-    });
+    }, []);
 
     return (
         <div className="GameView" data-testid="game-view">
             <div className="message-board">
                 Your Team: {team}
+                Opponent's Team: {opponent}
                 <div className="message-board__whose-turn">X's Turn</div>
             </div>
             <div className="game-board" data-testid="game-board">
-                <div className="game-board__square square1" onClick={handleClick}></div>
-                <div className="game-board__square square2" onClick={handleClick}></div>
-                <div className="game-board__square square3" onClick={handleClick}></div>
-                <div className="game-board__square square4" onClick={handleClick}></div>
-                <div className="game-board__square square5" onClick={handleClick}>X</div>
-                <div className="game-board__square square6" onClick={handleClick}></div>
-                <div className="game-board__square square7" onClick={handleClick}></div>
-                <div className="game-board__square square8" onClick={handleClick}></div>
-                <div className="game-board__square square9" onClick={handleClick}></div>
+                <div className="game-board__square square1 empty" onClick={handleClick}></div>
+                <div className="game-board__square square2 empty" onClick={handleClick}></div>
+                <div className="game-board__square square3 empty" onClick={handleClick}></div>
+                <div className="game-board__square square4 empty" onClick={handleClick}></div>
+                <div className="game-board__square square5 empty" onClick={handleClick}></div>
+                <div className="game-board__square square6 empty" onClick={handleClick}></div>
+                <div className="game-board__square square7 empty" onClick={handleClick}></div>
+                <div className="game-board__square square8 empty" onClick={handleClick}></div>
+                <div className="game-board__square square9 empty" onClick={handleClick}></div>
             </div>
         </div>
     )
