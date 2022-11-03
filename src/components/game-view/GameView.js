@@ -9,6 +9,7 @@ export default function GameView() {
     const location = useLocation();
     const { team, opponent } = location.state;
 
+    // Fills square if it is empty, then lets AI take a turn
     const handleClick = (e) => {
         const square = e.target;
         if (!square.innerText) {
@@ -17,17 +18,17 @@ export default function GameView() {
         }
     }
 
+    // Fills given square with given letter, removing its 'empty' class
     const fillSquare = (square, letter) => {
         square.classList.remove('empty');
         square.innerText = letter;
     }
 
+    // AI takes a turn
+    // Finds all empty squares and returns random one for AI to fill with their team letter
     const aiTurn = () => {
-        console.log('ai turn!');
         const squares = document.getElementsByClassName('game-board__square empty');
         const num = Math.floor(Math.random() * (squares.length - 1));
-        console.log(`random square: ${num}`);
-        console.log(`square class list: ${squares.item(num).classList}`);
 
         fillSquare(squares.item(num), opponent);
     }
