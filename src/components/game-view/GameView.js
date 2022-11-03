@@ -18,6 +18,11 @@ export default function GameView() {
         }
     }
 
+    // Engame logic
+    const handleEndgame = () => {
+        alert('game over!');
+    }
+
     // Fills given square with given letter, removing its 'empty' class
     const fillSquare = (square, letter) => {
         square.classList.remove('empty');
@@ -26,8 +31,15 @@ export default function GameView() {
 
     // AI takes a turn
     // Finds all empty squares and returns random one for AI to fill with their team letter
+    // Also triggers endgame
     const aiTurn = () => {
+
         const squares = document.getElementsByClassName('game-board__square empty');
+        // Endgame logic
+        if (squares.length == 0) {
+            handleEndgame();
+        }
+
         const num = Math.floor(Math.random() * (squares.length - 1));
 
         fillSquare(squares.item(num), opponent);
