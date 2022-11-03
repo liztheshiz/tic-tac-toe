@@ -11,16 +11,25 @@ export default function GameView() {
 
     const handleClick = (e) => {
         const square = e.target;
-        if (!square.innerText) square.innerText = `${team}`;
-        aiTurn();
+        if (!square.innerText) {
+            fillSquare(square, team);
+            aiTurn();
+        }
+    }
+
+    const fillSquare = (square, letter) => {
+        square.classList.remove('empty');
+        square.innerText = letter;
     }
 
     const aiTurn = () => {
         console.log('ai turn!');
         const squares = document.getElementsByClassName('game-board__square empty');
-        const num = Math.floor(Math.random() * (10));
+        const num = Math.floor(Math.random() * (squares.length - 1));
+        console.log(`random square: ${num}`);
+        console.log(`square class list: ${squares.item(num).classList}`);
 
-        squares.item(num).innerText = opponent;
+        fillSquare(squares.item(num), opponent);
     }
 
     useEffect(() => {
