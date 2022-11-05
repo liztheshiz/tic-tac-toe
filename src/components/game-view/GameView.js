@@ -9,16 +9,6 @@ export default function GameView() {
     const location = useLocation();
     const navigate = useNavigate();
 
-    const square1 = document.querySelector('.square1');
-    const square2 = document.querySelector('.square2');
-    const square3 = document.querySelector('.square3');
-    const square4 = document.querySelector('.square4');
-    const square5 = document.querySelector('.square5');
-    const square6 = document.querySelector('.square6');
-    const square7 = document.querySelector('.square7');
-    const square8 = document.querySelector('.square8');
-    const square9 = document.querySelector('.square9');
-
     const { player, opponent } = location.state;
 
     const [whoseTurn, setWhoseTurn] = useState('X');
