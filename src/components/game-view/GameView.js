@@ -10,15 +10,14 @@ export default function GameView() {
     const navigate = useNavigate();
     const { team, opponent } = location.state;
 
-    const [currentTurn, setCurrentTurn] = useState('X');
+    const [whoseTurn, setWhoseTurn] = useState('X');
 
     // Fills square if it is empty, then lets AI take a turn
     const handleClick = (e) => {
         const square = e.target;
         if (!square.innerText) {
             fillSquare(square, team);
-            const whoseTurn = document.querySelector('.message-board__whose-turn');
-            whoseTurn.innerText = `${opponent}'s Turn`;
+            setWhoseTurn(opponent);
 
             // Wait before AI takes its turn
             setTimeout(aiTurn, 600);
@@ -56,8 +55,8 @@ export default function GameView() {
         if (squares.length == 0) {
             handleEndgame();
         }
-        const whoseTurn = document.querySelector('.message-board__whose-turn');
-        whoseTurn.innerText = `${team}'s Turn`;
+
+        setWhoseTurn(team);
     }
 
     useEffect(() => {
@@ -72,7 +71,7 @@ export default function GameView() {
             <div className="message-board">
                 Your Team: {team}
                 Opponent's Team: {opponent}
-                <div className="message-board__whose-turn">X's Turn</div>
+                <div className="message-board__whose-turn">{whoseTurn}'s Turn</div>
             </div>
             <div className="game-board" data-testid="game-board">
                 <div className="game-board__square square1 empty" onClick={handleClick}></div>
