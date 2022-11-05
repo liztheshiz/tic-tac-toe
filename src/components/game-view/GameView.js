@@ -1,6 +1,6 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import './GameView.css';
 
@@ -9,6 +9,8 @@ export default function GameView() {
     const location = useLocation();
     const navigate = useNavigate();
     const { team, opponent } = location.state;
+
+    const [currentTurn, setCurrentTurn] = useState('X');
 
     // Fills square if it is empty, then lets AI take a turn
     const handleClick = (e) => {
