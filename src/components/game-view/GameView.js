@@ -29,6 +29,7 @@ export default function GameView() {
 
         if (whoseTurn == player && !square.innerText) {
             fillSquare(square, player);
+            winCheck(square);
             setWhoseTurn(opponent);
 
             // Wait before AI takes its turn
@@ -40,6 +41,19 @@ export default function GameView() {
     const handleEndgame = () => {
         alert('game over!');
         navigate('/gameover');
+    }
+
+    const winCheck = (square) => {
+        let row;
+        square.classList.forEach((i) => {
+            if (i.includes('row')) { row = i }
+        });
+        console.log(`row: ${row}`);
+        let col;
+        square.classList.forEach((i) => {
+            if (i.includes('col')) { col = i }
+        });
+        console.log(`col: ${col}`);
     }
 
     // Fills given square with given letter, removing its 'empty' class
