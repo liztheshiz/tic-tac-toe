@@ -2,14 +2,14 @@ import React from "react";
 import {
     BrowserRouter as Router,
     Routes,
-    Route,
-    Link
+    Route
 } from "react-router-dom";
 
 import './App.css';
 
 import Home from '../home/Home';
 import GameView from "../game-view/GameView";
+import GameOverView from "../game-over-view/GameOverView";
 
 function App() {
     return (
