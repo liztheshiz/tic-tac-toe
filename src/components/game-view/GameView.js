@@ -19,7 +19,6 @@ export default function GameView() {
 
         if (whoseTurn == player && !square.innerText) {
             fillSquare(square, player);
-            winCheck(square);
             setWhoseTurn(opponent);
 
             // Wait before AI takes its turn
@@ -77,6 +76,7 @@ export default function GameView() {
     const fillSquare = (square, letter) => {
         square.classList.remove('empty');
         square.innerText = letter;
+        winCheck(square);
     }
 
     // AI takes a turn
