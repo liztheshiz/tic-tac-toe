@@ -33,17 +33,25 @@ export default function GameView() {
         navigate('/gameover');
     }
 
+    // Checks if last played square results in a win
     const winCheck = (square) => {
+        // Find row of given square
         let row;
         square.classList.forEach((i) => {
             if (i.includes('row')) { row = i }
         });
-        console.log(`row: ${row}`);
+
+        // Find col of given square
         let col;
         square.classList.forEach((i) => {
             if (i.includes('col')) { col = i }
         });
-        console.log(`col: ${col}`);
+
+        const rowSquares = document.querySelectorAll(`.${row}`);
+        const rowWin = (rowSquares.item(0).innerText == rowSquares.item(1).innerText) && (rowSquares.item(1).innerText == rowSquares.item(2).innerText);
+
+        const colSquares = document.querySelectorAll(`.${col}`);
+        const colWin = (colSquares.item(0).innerText == colSquares.item(1).innerText) && (colSquares.item(1).innerText == colSquares.item(2).innerText);
     }
 
     // Fills given square with given letter, removing its 'empty' class
