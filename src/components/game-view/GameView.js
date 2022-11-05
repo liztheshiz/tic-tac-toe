@@ -5,10 +5,21 @@ import { useEffect, useState } from 'react';
 import './GameView.css';
 
 export default function GameView() {
-    // Import team choice from Link in Home
+    // Import player choice from Link in Home
     const location = useLocation();
     const navigate = useNavigate();
-    const { team, opponent } = location.state;
+
+    const square1 = document.querySelector('.square1');
+    const square2 = document.querySelector('.square2');
+    const square3 = document.querySelector('.square3');
+    const square4 = document.querySelector('.square4');
+    const square5 = document.querySelector('.square5');
+    const square6 = document.querySelector('.square6');
+    const square7 = document.querySelector('.square7');
+    const square8 = document.querySelector('.square8');
+    const square9 = document.querySelector('.square9');
+
+    const { player, opponent } = location.state;
 
     const [whoseTurn, setWhoseTurn] = useState('X');
 
@@ -16,8 +27,8 @@ export default function GameView() {
     const handleClick = (e) => {
         const square = e.target;
 
-        if (whoseTurn == team && !square.innerText) {
-            fillSquare(square, team);
+        if (whoseTurn == player && !square.innerText) {
+            fillSquare(square, player);
             setWhoseTurn(opponent);
 
             // Wait before AI takes its turn
@@ -57,12 +68,12 @@ export default function GameView() {
             handleEndgame();
         }
 
-        setWhoseTurn(team);
+        setWhoseTurn(player);
     }
 
     useEffect(() => {
         // X always goes first
-        if (team == 'O') {
+        if (player == 'O') {
             aiTurn();
         }
     }, []);
@@ -70,20 +81,20 @@ export default function GameView() {
     return (
         <div className="GameView" data-testid="game-view">
             <div className="message-board">
-                Your Team: {team}
+                Your Team: {player}
                 Opponent's Team: {opponent}
                 <div className="message-board__whose-turn">{whoseTurn}'s Turn</div>
             </div>
             <div className="game-board" data-testid="game-board">
-                <div className="game-board__square square1 empty" onClick={handleClick}></div>
-                <div className="game-board__square square2 empty" onClick={handleClick}></div>
-                <div className="game-board__square square3 empty" onClick={handleClick}></div>
-                <div className="game-board__square square4 empty" onClick={handleClick}></div>
-                <div className="game-board__square square5 empty" onClick={handleClick}></div>
-                <div className="game-board__square square6 empty" onClick={handleClick}></div>
-                <div className="game-board__square square7 empty" onClick={handleClick}></div>
-                <div className="game-board__square square8 empty" onClick={handleClick}></div>
-                <div className="game-board__square square9 empty" onClick={handleClick}></div>
+                <div className="game-board__square row1 col1 square1 empty" onClick={handleClick}></div>
+                <div className="game-board__square row1 col2 square2 empty" onClick={handleClick}></div>
+                <div className="game-board__square row1 col3 square3 empty" onClick={handleClick}></div>
+                <div className="game-board__square row2 col1 square4 empty" onClick={handleClick}></div>
+                <div className="game-board__square row2 col2 square5 empty" onClick={handleClick}></div>
+                <div className="game-board__square row2 col3 square6 empty" onClick={handleClick}></div>
+                <div className="game-board__square row3 col1 square7 empty" onClick={handleClick}></div>
+                <div className="game-board__square row3 col2 square8 empty" onClick={handleClick}></div>
+                <div className="game-board__square row3 col3 square9 empty" onClick={handleClick}></div>
             </div>
         </div>
     )
