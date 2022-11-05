@@ -15,7 +15,8 @@ export default function GameView() {
     // Fills square if it is empty, then lets AI take a turn
     const handleClick = (e) => {
         const square = e.target;
-        if (!square.innerText) {
+
+        if (whoseTurn == team && !square.innerText) {
             fillSquare(square, team);
             setWhoseTurn(opponent);
 
