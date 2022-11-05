@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useEffect } from 'react';
 
@@ -7,6 +7,7 @@ import './GameView.css';
 export default function GameView() {
     // Import team choice from Link in Home
     const location = useLocation();
+    const navigate = useNavigate();
     const { team, opponent } = location.state;
 
     // Fills square if it is empty, then lets AI take a turn
@@ -14,13 +15,18 @@ export default function GameView() {
         const square = e.target;
         if (!square.innerText) {
             fillSquare(square, team);
-            aiTurn();
+            const whoseTurn = document.querySelector('.message-board__whose-turn');
+            whoseTurn.innerText = `${opponent}'s Turn`;
+
+            // Wait before AI takes its turn
+            setTimeout(aiTurn, 600);
         }
     }
 
     // Engame logic
     const handleEndgame = () => {
         alert('game over!');
+        navigate('/gameover');
     }
 
     // Fills given square with given letter, removing its 'empty' class
@@ -33,8 +39,8 @@ export default function GameView() {
     // Finds all empty squares and returns random one for AI to fill with their team letter
     // Also triggers endgame
     const aiTurn = () => {
-
         const squares = document.getElementsByClassName('game-board__square empty');
+
         // Endgame logic
         if (squares.length == 0) {
             handleEndgame();
@@ -43,6 +49,13 @@ export default function GameView() {
         const num = Math.floor(Math.random() * (squares.length - 1));
 
         fillSquare(squares.item(num), opponent);
+
+        // Endgame logic
+        if (squares.length == 0) {
+            handleEndgame();
+        }
+        const whoseTurn = document.querySelector('.message-board__whose-turn');
+        whoseTurn.innerText = `${team}'s Turn`;
     }
 
     useEffect(() => {
