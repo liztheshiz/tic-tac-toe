@@ -69,7 +69,6 @@ export default function GameView() {
             console.log(`diag1Win: ${diagWin1}`);
             console.log(`diag2Win: ${diagWin2}`);
         }
-
     }
 
     // Fills given square with given letter, removing its 'empty' class
