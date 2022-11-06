@@ -8,17 +8,17 @@ import './Home.css';
 export default function Home() {
     return (
         <Col xs={4} className="Home">
-            <Row className="main-title">
-                <Col>
-                    <Row><Col>TIC.</Col></Row>
-                    <Row><Col>TAC.</Col></Row>
-                    <Row><Col>TOE.</Col></Row>
+            <Row className="main-title justify-content-center">
+                <Col xs={7}>
+                    <Row className="main-title__row"><Col className="tic">TIC</Col></Row>
+                    <Row className="main-title__row"><Col className="tac">TAC</Col></Row>
+                    <Row className="main-title__row"><Col className="toe">TOE</Col></Row>
                 </Col>
-            </Row>
+            </Row >
             <Row className="buttons justify-content-center">
-                <Col xs={2}><Link to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button">X</button></Link></Col>
-                <Col xs={2}><Link to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link></Col>
+                <Col xs={3} className="justify-content-center button-col"><Link to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button">X</button></Link></Col>
+                <Col xs={3} className="justify-content-center button-col"><Link to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link></Col>
             </Row>
-        </Col>
+        </Col >
     )
 }

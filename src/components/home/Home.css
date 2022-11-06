@@ -1,13 +1,43 @@
 .main-title {
     text-align: left;
     font-size: 100px;
+    font-weight: 900;
 }
 
-.Home {
-    background-color: green;
+.main-title__row {
+    line-height: 100px;
+    letter-spacing: 10px;
+}
+
+.tic {
+    letter-spacing: 32px;
+}
+
+.toe {
+    letter-spacing: 14px;
 }
 
 .start-button {
     font-size: 50px;
-    width: 100%;
+    font-weight: 500;
+    height: 50px;
+    line-height: 50px;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 10px;
+    margin-top: 60px;
+}
+
+.button-col {
+    text-align: center;
+}
+
+.start-button:hover,
+.start-button:focus {
+    box-shadow: rgba(70, 60, 50, 0.15) 0px 5px 15px;
+}
+
+.start-button:active {
+    box-shadow: rgba(70, 60, 50, 0.45) 0px 5px 15px;
 }

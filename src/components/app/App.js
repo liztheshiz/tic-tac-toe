@@ -18,8 +18,8 @@ import GameOverView from "../game-over-view/GameOverView";
 function App() {
     return (
         <Router>
-            <Container>
-                <Row className="justify-content-center firstrow">
+            <Container className="App">
+                <Row className="justify-content-center">
                     <Routes>
                         <Route path="/" element={<Home />} />
                         <Route path="/play" element={<GameView />} />
