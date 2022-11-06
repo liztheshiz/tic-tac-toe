@@ -6,3 +6,8 @@
 .Home {
     background-color: green;
 }
+
+.start-button {
+    font-size: 50px;
+    width: 100%;
+}
