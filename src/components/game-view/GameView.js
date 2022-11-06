@@ -30,7 +30,7 @@ export default function GameView() {
     // Engame logic
     const handleEndgame = (winner) => {
         alert('game over!');
-        navigate('/gameover');
+        navigate('/gameover', { state: { winner: winner } });
     }
 
     // Checks if last played square results in a win
