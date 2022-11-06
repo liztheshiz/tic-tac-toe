@@ -17,7 +17,7 @@ import GameOverView from "../game-over-view/GameOverView";
 
 function App() {
     return (
-        <Router>
+        <Router className="text-center">
             <Container className="App">
                 <Row className="justify-content-center">
                     <Routes>
