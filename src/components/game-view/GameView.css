@@ -11,3 +11,7 @@
 .empty {
     background-color: grey;
 }
+
+.win-square {
+    background-color: green;
+}
