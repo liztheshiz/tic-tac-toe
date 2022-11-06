@@ -101,7 +101,7 @@ export default function GameView() {
 
         // Endgame logic
         if (squares.length == 0) {
-            handleEndgame();
+            handleEndgame(false);
         }
 
         const num = Math.floor(Math.random() * (squares.length - 1));
@@ -110,7 +110,7 @@ export default function GameView() {
 
         // Endgame logic
         if (squares.length == 0) {
-            handleEndgame();
+            handleEndgame(false);
         }
 
         setWhoseTurn(player);
