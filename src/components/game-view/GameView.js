@@ -18,7 +18,7 @@ export default function GameView() {
     const handleClick = (e) => {
         const square = e.target;
 
-        if (whoseTurn == player && !square.innerText) {
+        if (!winState && whoseTurn == player && !square.innerText) {
             fillSquare(square, player);
             setWhoseTurn(opponent);
 
@@ -28,7 +28,7 @@ export default function GameView() {
     }
 
     // Engame logic
-    const handleEndgame = () => {
+    const handleEndgame = (winner) => {
         alert('game over!');
         navigate('/gameover');
     }
@@ -76,11 +76,13 @@ export default function GameView() {
 
         // Highlight winning squares and go to endgame if a win is present
         if (rowWin || colWin || diag1Win || diag2Win) {
+            setWinState(true);
             if (rowWin) rowSquares.forEach((i) => { i.classList.add('win-square') });
             if (colWin) colSquares.forEach((i) => { i.classList.add('win-square') });
             if (diag1Win) diag1Squares.forEach((i) => { i.classList.add('win-square') });
             if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
-            //handleEndgame(rowWin, colWin, diagWin1, diagWin2);
+
+            setTimeout(handleEndgame, 600, whoseTurn);
         }
     }
 
