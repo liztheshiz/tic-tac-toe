@@ -32,7 +32,7 @@ export default function GameView() {
 
     // Engame logic
     const handleEndgame = (winner) => {
-        alert('game over!');
+        //alert('game over!');
         navigate('/gameover', { state: { winner: winner } });
     }
 
