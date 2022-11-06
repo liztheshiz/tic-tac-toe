@@ -72,6 +72,13 @@ export default function GameView() {
             console.log(`diag1Win: ${diagWin1}`);
             console.log(`diag2Win: ${diagWin2}`);
         }
+
+        if (rowWin || colWin || diagWin1 || diagWin2) {
+            if (rowWin) {
+                rowSquares.forEach((i) => {i.classList.add('win-square')});
+            }
+            //handleEndgame(rowWin, colWin, diagWin1, diagWin2);
+        }
     }
 
     // Fills given square with given letter, removing its 'empty' class
