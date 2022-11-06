@@ -12,6 +12,7 @@ export default function GameView() {
     const { player, opponent } = location.state;
 
     const [whoseTurn, setWhoseTurn] = useState('X');
+    const [winState, setWinState] = useState(false);
 
     // Fills square if it is empty, then lets AI take a turn
     const handleClick = (e) => {
@@ -73,6 +74,7 @@ export default function GameView() {
         const squareOnDiag2 = squareNum == 3 || squareNum == 5 || squareNum == 7;
         const diag2Win = squareOnDiag2 && (diag2Squares.item(0).innerText == diag2Squares.item(1).innerText) && (diag2Squares.item(1).innerText == diag2Squares.item(2).innerText);
 
+        // Highlight winning squares and go to endgame if a win is present
         if (rowWin || colWin || diag1Win || diag2Win) {
             if (rowWin) rowSquares.forEach((i) => { i.classList.add('win-square') });
             if (colWin) colSquares.forEach((i) => { i.classList.add('win-square') });
