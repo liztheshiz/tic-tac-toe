@@ -1,8 +1,11 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 
 import './GameOverView.css';
 
 export default function GameView() {
+    const location = useLocation();
+    const { winner } = location.state;
+
     return (
         <div>
             <div>GAME OVER</div>
