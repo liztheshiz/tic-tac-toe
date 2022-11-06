@@ -46,6 +46,10 @@ export default function GameView() {
             if (i.includes('col')) { col = i }
         });
 
+        // Find diagonal squares (whether or not given square is in them; inclusion of given square check later)
+        let diag1Squares = document.querySelectorAll('.square1, .square5, .square9');
+        let diag2Squares = document.querySelectorAll('.square3, .square5, .square7');
+
         // Find given square number (converted to integer type)
         let squareNum;
         square.classList.forEach((i) => {
@@ -62,21 +66,18 @@ export default function GameView() {
         const colWin = (colSquares.item(0).innerText == colSquares.item(1).innerText) && (colSquares.item(1).innerText == colSquares.item(2).innerText);
         console.log(`colWin: ${colWin}`);
 
-        // Checks if given square is in a corner or the center, then checks diagonal(s) if it is
-        let diagWin1 = false;
-        let diagWin2 = false;
-        // If squareNum is odd, square is on diagonal
-        if (squareNum % 2 == 1) {
-            diagWin1 = document.querySelector('.square1').innerText && (document.querySelector('.square1').innerText == document.querySelector('.square5').innerText) && (document.querySelector('.square5').innerText == document.querySelector('.square9').innerText);
-            diagWin2 = document.querySelector('.square3').innerText && (document.querySelector('.square3').innerText == document.querySelector('.square5').innerText) && (document.querySelector('.square5').innerText == document.querySelector('.square7').innerText);
-            console.log(`diag1Win: ${diagWin1}`);
-            console.log(`diag2Win: ${diagWin2}`);
-        }
+        // Check for diagonal wins
+        const squareOnDiag1 = squareNum == 1 || squareNum == 5 || squareNum == 9;
+        const diag1Win = squareOnDiag1 && (diag1Squares.item(0).innerText == diag1Squares.item(1).innerText) && (diag1Squares.item(1).innerText == diag1Squares.item(2).innerText);
 
-        if (rowWin || colWin || diagWin1 || diagWin2) {
-            if (rowWin) {
-                rowSquares.forEach((i) => {i.classList.add('win-square')});
-            }
+        const squareOnDiag2 = squareNum == 3 || squareNum == 5 || squareNum == 7;
+        const diag2Win = squareOnDiag2 && (diag2Squares.item(0).innerText == diag2Squares.item(1).innerText) && (diag2Squares.item(1).innerText == diag2Squares.item(2).innerText);
+
+        if (rowWin || colWin || diag1Win || diag2Win) {
+            if (rowWin) rowSquares.forEach((i) => { i.classList.add('win-square') });
+            if (colWin) colSquares.forEach((i) => { i.classList.add('win-square') });
+            if (diag1Win) diag1Squares.forEach((i) => { i.classList.add('win-square') });
+            if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
             //handleEndgame(rowWin, colWin, diagWin1, diagWin2);
         }
     }
