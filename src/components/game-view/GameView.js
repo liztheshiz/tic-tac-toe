@@ -46,20 +46,23 @@ export default function GameView() {
             if (i.includes('col')) { col = i }
         });
 
+        // Find given square number (converted to integer type)
         let squareNum;
         square.classList.forEach((i) => {
             if (i.includes('square') && i.length == 7) { squareNum = parseInt(i.substring(i.length - 1)) }
         });
 
+        // Check row for win
         const rowSquares = document.querySelectorAll(`.${row}`);
         const rowWin = (rowSquares.item(0).innerText == rowSquares.item(1).innerText) && (rowSquares.item(1).innerText == rowSquares.item(2).innerText);
         console.log(`rowWin: ${rowWin}`);
 
+        // Check col for win
         const colSquares = document.querySelectorAll(`.${col}`);
         const colWin = (colSquares.item(0).innerText == colSquares.item(1).innerText) && (colSquares.item(1).innerText == colSquares.item(2).innerText);
         console.log(`colWin: ${colWin}`);
 
-        // Checks if given square is in a corner or the center, then checks diagonal(s)
+        // Checks if given square is in a corner or the center, then checks diagonal(s) if it is
         let diagWin1 = false;
         let diagWin2 = false;
         // If squareNum is odd, square is on diagonal
