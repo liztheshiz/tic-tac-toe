@@ -15,7 +15,7 @@ export default function Home() {
                     <Row className="main-title__row"><Col className="toe">TOE</Col></Row>
                 </Col>
             </Row >
-            <Row className="buttons justify-content-center">
+            <Row className="buttons mt-5 justify-content-center">
                 <Col xs={3} className="justify-content-center button-col text-center"><Link to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button">X</button></Link></Col>
                 <Col xs={3} className="justify-content-center button-col text-center"><Link to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link></Col>
             </Row>

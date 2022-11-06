@@ -2,6 +2,9 @@ import { useLocation, useNavigate } from 'react-router-dom';
 
 import { useEffect, useState } from 'react';
 
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+
 import './GameView.css';
 
 export default function GameView() {
@@ -124,23 +127,32 @@ export default function GameView() {
     }, []);
 
     return (
-        <div className="GameView" data-testid="game-view">
-            <div className="message-board">
-                Your Team: {player}
-                Opponent's Team: {opponent}
-                <div className="message-board__whose-turn">{whoseTurn}'s Turn</div>
-            </div>
-            <div className="game-board" data-testid="game-board">
-                <div className="game-board__square row1 col1 square1 empty" onClick={handleClick}></div>
-                <div className="game-board__square row1 col2 square2 empty" onClick={handleClick}></div>
-                <div className="game-board__square row1 col3 square3 empty" onClick={handleClick}></div>
-                <div className="game-board__square row2 col1 square4 empty" onClick={handleClick}></div>
-                <div className="game-board__square row2 col2 square5 empty" onClick={handleClick}></div>
-                <div className="game-board__square row2 col3 square6 empty" onClick={handleClick}></div>
-                <div className="game-board__square row3 col1 square7 empty" onClick={handleClick}></div>
-                <div className="game-board__square row3 col2 square8 empty" onClick={handleClick}></div>
-                <div className="game-board__square row3 col3 square9 empty" onClick={handleClick}></div>
-            </div>
-        </div>
+        <Col xs={8} className="GameView text-center" data-testid="game-view">
+            <Row className="message-board">
+                <Col>
+                    <Row className="justify-content-center message-board__teams">
+                        <Col xs={5}>Your Team: {player}</Col><Col xs={5}>Opponent's Team: {opponent}</Col>
+                    </Row>
+                    <Row className="message-board__whose-turn mt-3">
+                        <Col className="text-center">{whoseTurn}'s Turn</Col>
+                    </Row>
+                </Col>
+            </Row>
+            <Row className="justify-content-center mt-4">
+                <Col xs={6} className="justify-content-center text-center">
+                    <div className="game-board justify-content-center" data-testid="game-board">
+                        <div className="game-board__square row1 col1 square1 empty" onClick={handleClick}></div>
+                        <div className="game-board__square row1 col2 square2 empty" onClick={handleClick}></div>
+                        <div className="game-board__square row1 col3 square3 empty" onClick={handleClick}></div>
+                        <div className="game-board__square row2 col1 square4 empty" onClick={handleClick}></div>
+                        <div className="game-board__square row2 col2 square5 empty" onClick={handleClick}></div>
+                        <div className="game-board__square row2 col3 square6 empty" onClick={handleClick}></div>
+                        <div className="game-board__square row3 col1 square7 empty" onClick={handleClick}></div>
+                        <div className="game-board__square row3 col2 square8 empty" onClick={handleClick}></div>
+                        <div className="game-board__square row3 col3 square9 empty" onClick={handleClick}></div>
+                    </div>
+                </Col>
+            </Row>
+        </Col>
     )
 }
