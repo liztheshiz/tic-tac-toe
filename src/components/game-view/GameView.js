@@ -78,7 +78,7 @@ export default function GameView() {
         const squareOnDiag2 = squareNum == 3 || squareNum == 5 || squareNum == 7;
         const diag2Win = squareOnDiag2 && (diag2Squares.item(0).innerText == diag2Squares.item(1).innerText) && (diag2Squares.item(1).innerText == diag2Squares.item(2).innerText);
 
-        // Highlight winning squares and go to endgame if a win is present
+        // Highlight winning squares and go to endgame if a win is present, or go to endgame if last square filled with no winner
         if (rowWin || colWin || diag1Win || diag2Win) {
             setWinState(true);
             if (rowWin) rowSquares.forEach((i) => { i.classList.add('win-square') });
@@ -87,6 +87,8 @@ export default function GameView() {
             if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
 
             setTimeout(handleEndgame, 600, whoseTurn);
+        } else if (squares.length == 0) {
+            setTimeout(handleEndgame, 600, false);
         }
     }
 
@@ -94,10 +96,6 @@ export default function GameView() {
     const fillSquare = (square, letter) => {
         square.classList.remove('empty');
         square.innerText = letter;
-        // If last empty square was just filled, go to endgame
-        if (squares.length == 0) {
-            setTimeout(handleEndgame, 600, false);
-        }
         winCheck(square);
     }
 
