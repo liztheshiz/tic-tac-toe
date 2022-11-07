@@ -113,7 +113,7 @@ export default function GameView() {
 
     useEffect(() => {
         // X always goes first
-        if (player == 'O') {
+        if (player == 'O' && squares.length == 9) {
             setTimeout(aiTurn, 900);
         }
     }, []);
