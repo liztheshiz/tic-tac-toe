@@ -40,14 +40,12 @@ export default function GameView() {
 
     // Engame logic
     const handleEndgame = (winner) => {
-        return wait(700).then(() => {
-            //alert('game over!');
-            navigate('/gameover', { state: { winner: winner } });
-        });
+        //alert('game over!');
+        navigate('/gameover', { state: { winner: winner } });
     }
 
     // Checks if last played square results in a win
-    const winCheck = async (square) => {
+    const winCheck = (square) => {
         // Find row of given square
         let row;
         square.classList.forEach((i) => {
@@ -94,10 +92,10 @@ export default function GameView() {
             if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
 
             console.log('win endgame about to run');
-            await handleEndgame(whoseTurn);
+            setTimeout(handleEndgame, 600, whoseTurn);
         } else if (squares.length == 0) {
             console.log('non win endgame about to run');
-            await handleEndgame(false);
+            setTimeout(handleEndgame, 600, false);
         }
         console.log('winCheck run, no endgame');
     }
@@ -126,14 +124,11 @@ export default function GameView() {
         });
     }
 
-    useEffect(() => {
-        async function start() {
-            // X always goes first
-            if (player == 'O' && squares.length == 9) {
-                await aiTurn();
-            }
+    useEffect(async () => {
+        // X always goes first
+        if (player == 'O' && squares.length == 9) {
+            await aiTurn();
         }
-        start();
     }, []);
 
     return (
