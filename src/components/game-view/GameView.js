@@ -20,8 +20,11 @@ export default function GameView() {
     const [whoseTurn, setWhoseTurn] = useState('X');
     const [winState, setWinState] = useState(false);
 
+    // Sets timer to be resolved before execution continues (ie synchronously)
+    const wait = (delay, ...args) => new Promise(resolve => setTimeout(resolve, delay, ...args));
+
     // Fills square if it is empty, then lets AI take a turn
-    const handleClick = (e) => {
+    const handleClick = async (e) => {
         console.log('PLAYER CLICKED');
         const square = e.target;
 
@@ -31,7 +34,7 @@ export default function GameView() {
 
             // Wait before AI takes its turn
             console.log(`about to set timeout for aiTurn after click`);
-            setTimeout(aiTurn, 700);
+            await aiTurn();
         }
     }
 
@@ -99,6 +102,7 @@ export default function GameView() {
 
     // Fills given square with given letter, removing its 'empty' class
     const fillSquare = (square, letter) => {
+        console.log('filling square');
         square.classList.remove('empty');
         square.innerText = letter;
         console.log('about to run winCheck');
@@ -109,19 +113,21 @@ export default function GameView() {
     // Fills one empty square randomly with AI team letter
     // Also triggers endgame
     const aiTurn = () => {
-        console.log('AI MOVING');
-        const num = Math.floor(Math.random() * (squares.length - 1));
+        return wait(700).then(() => {
+            console.log('AI MOVING');
+            const num = Math.floor(Math.random() * (squares.length - 1));
 
-        fillSquare(squares.item(num), opponent);
+            fillSquare(squares.item(num), opponent);
 
-        console.log(`finished filling square w no endgame, changing turn to ${player}`);
-        setWhoseTurn(player);
+            console.log(`finished filling square w no endgame, changing turn to ${player}`);
+            setWhoseTurn(player);
+        });
     }
 
-    useEffect(() => {
+    useEffect(async () => {
         // X always goes first
         if (player == 'O' && squares.length == 9) {
-            setTimeout(aiTurn, 900);
+            await aiTurn();
         }
     }, []);
 
