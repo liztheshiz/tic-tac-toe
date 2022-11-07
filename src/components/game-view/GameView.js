@@ -66,12 +66,10 @@ export default function GameView() {
         // Check row for win
         const rowSquares = document.querySelectorAll(`.${row}`);
         const rowWin = (rowSquares.item(0).innerText == rowSquares.item(1).innerText) && (rowSquares.item(1).innerText == rowSquares.item(2).innerText);
-        console.log(`rowWin: ${rowWin}`);
 
         // Check col for win
         const colSquares = document.querySelectorAll(`.${col}`);
         const colWin = (colSquares.item(0).innerText == colSquares.item(1).innerText) && (colSquares.item(1).innerText == colSquares.item(2).innerText);
-        console.log(`colWin: ${colWin}`);
 
         // Check for diagonal wins
         const squareOnDiag1 = squareNum == 1 || squareNum == 5 || squareNum == 9;
