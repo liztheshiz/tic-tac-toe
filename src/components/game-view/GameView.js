@@ -90,7 +90,7 @@ export default function GameView() {
 
             console.log('win endgame about to run');
             setTimeout(handleEndgame, 600, whoseTurn);
-        } else if (squares.length == 0) {
+        } else if (!winState && squares.length == 0) {
             console.log('non win endgame about to run');
             setTimeout(handleEndgame, 600, false);
         }
