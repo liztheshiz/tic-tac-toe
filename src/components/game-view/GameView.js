@@ -22,6 +22,7 @@ export default function GameView() {
 
     // Fills square if it is empty, then lets AI take a turn
     const handleClick = (e) => {
+        console.log('PLAYER CLICKED');
         const square = e.target;
 
         if (!winState && whoseTurn == player && !square.innerText) {
@@ -29,6 +30,7 @@ export default function GameView() {
             setWhoseTurn(opponent);
 
             // Wait before AI takes its turn
+            console.log(`about to set timeout for aiTurn after click`);
             setTimeout(aiTurn, 700);
         }
     }
@@ -86,16 +88,20 @@ export default function GameView() {
             if (diag1Win) diag1Squares.forEach((i) => { i.classList.add('win-square') });
             if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
 
+            console.log('win endgame about to run');
             setTimeout(handleEndgame, 600, whoseTurn);
         } else if (squares.length == 0) {
+            console.log('non win endgame about to run');
             setTimeout(handleEndgame, 600, false);
         }
+        console.log('winCheck run, no endgame');
     }
 
     // Fills given square with given letter, removing its 'empty' class
     const fillSquare = (square, letter) => {
         square.classList.remove('empty');
         square.innerText = letter;
+        console.log('about to run winCheck');
         winCheck(square);
     }
 
@@ -103,6 +109,7 @@ export default function GameView() {
     // Fills one empty square randomly with AI team letter
     // Also triggers endgame
     const aiTurn = () => {
+        console.log('AI MOVING');
         const num = Math.floor(Math.random() * (squares.length - 1));
 
         fillSquare(squares.item(num), opponent);
