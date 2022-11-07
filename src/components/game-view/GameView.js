@@ -107,6 +107,7 @@ export default function GameView() {
 
         fillSquare(squares.item(num), opponent);
 
+        console.log(`finished filling square, changing turn to ${player}`);
         setWhoseTurn(player);
     }
 
