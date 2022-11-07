@@ -12,6 +12,9 @@ export default function GameView() {
     const location = useLocation();
     const navigate = useNavigate();
 
+    // All empty squares
+    const squares = document.getElementsByClassName('game-board__square empty');
+
     const { player, opponent } = location.state;
 
     const [whoseTurn, setWhoseTurn] = useState('X');
@@ -26,7 +29,7 @@ export default function GameView() {
             setWhoseTurn(opponent);
 
             // Wait before AI takes its turn
-            setTimeout(aiTurn, 600);
+            setTimeout(aiTurn, 700);
         }
     }
 
@@ -93,28 +96,20 @@ export default function GameView() {
     const fillSquare = (square, letter) => {
         square.classList.remove('empty');
         square.innerText = letter;
+        // If last empty square was just filled, go to endgame
+        if (squares.length == 0) {
+            setTimeout(handleEndgame, 600, false);
+        }
         winCheck(square);
     }
 
     // AI takes a turn
-    // Finds all empty squares and returns random one for AI to fill with their team letter
+    // Fills one empty square randomly with AI team letter
     // Also triggers endgame
     const aiTurn = () => {
-        const squares = document.getElementsByClassName('game-board__square empty');
-
-        // Endgame logic
-        if (squares.length == 0) {
-            handleEndgame(false);
-        }
-
         const num = Math.floor(Math.random() * (squares.length - 1));
 
         fillSquare(squares.item(num), opponent);
-
-        // Endgame logic
-        if (squares.length == 0) {
-            handleEndgame(false);
-        }
 
         setWhoseTurn(player);
     }
@@ -122,7 +117,7 @@ export default function GameView() {
     useEffect(() => {
         // X always goes first
         if (player == 'O') {
-            aiTurn();
+            setTimeout(aiTurn, 900);
         }
     }, []);
 
