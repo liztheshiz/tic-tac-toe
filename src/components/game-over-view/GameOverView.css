@@ -1,0 +1,11 @@
+.GameOverView {
+    padding-top: 6%;
+}
+
+.gameover-message {
+    font-size: 40px;
+}
+
+.play-again {
+    font-size: 30px;
+}
