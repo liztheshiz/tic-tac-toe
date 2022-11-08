@@ -28,7 +28,7 @@
     background-color: var(--background-color);
     color: var(--text-color);
     border: none;
-    border-radius: 10px;
+    border-radius: 6px;
 }
 
 .start-button:hover,
@@ -37,5 +37,5 @@
 }
 
 .start-button:active {
-    box-shadow: rgba(70, 60, 50, 0.45) 0px 5px 15px;
+    box-shadow: rgba(70, 60, 50, 0.25) 0px 5px 5px -5px inset, rgba(0, 0, 0, 0.3) 0px 5px 30px -18px inset;
 }
