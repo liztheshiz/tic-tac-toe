@@ -27,11 +27,13 @@ export default function GameView() {
 
         if (!winState && whoseTurn == player && !square.innerText) {
             fillSquare(square, player);
-            setWhoseTurn(opponent);
+            if (!winState) {
+                setWhoseTurn(opponent);
 
-            // Wait before AI takes its turn
-            console.log(`about to set timeout for aiTurn after click`);
-            setTimeout(aiTurn, 700);
+                // Wait before AI takes its turn
+                console.log(`about to set timeout for aiTurn after click`);
+                setTimeout(aiTurn, 700);
+            }
         }
     }
 
@@ -83,16 +85,19 @@ export default function GameView() {
         // Highlight winning squares and go to endgame if a win is present, or go to endgame if last square filled with no winner
         if (rowWin || colWin || diag1Win || diag2Win) {
             setWinState(true);
+            console.log(`winState after setting it: ${winState.toString()}`);
             if (rowWin) rowSquares.forEach((i) => { i.classList.add('win-square') });
             if (colWin) colSquares.forEach((i) => { i.classList.add('win-square') });
             if (diag1Win) diag1Squares.forEach((i) => { i.classList.add('win-square') });
             if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
 
             console.log('win endgame about to run');
-            setTimeout(handleEndgame, 600, whoseTurn);
+            console.log(`winState: ${winState}`);
+            return setTimeout(handleEndgame, 600, whoseTurn);
         } else if (!winState && squares.length == 0) {
             console.log('non win endgame about to run');
-            setTimeout(handleEndgame, 600, false);
+            console.log(`winState: ${winState}`);
+            return setTimeout(handleEndgame, 600, false);
         }
         console.log('winCheck run, no endgame');
     }
@@ -115,7 +120,8 @@ export default function GameView() {
         fillSquare(squares.item(num), opponent);
 
         console.log(`finished filling square w no endgame, changing turn to ${player}`);
-        setWhoseTurn(player);
+        console.log(`winState: ${winState}`);
+        if (!winState) setWhoseTurn(player);
     }
 
     useEffect(() => {
@@ -130,7 +136,7 @@ export default function GameView() {
             <Row className="message-board">
                 <Col>
                     <Row className="justify-content-center message-board__teams">
-                        <Col xs={5}>Your Team: {player}</Col><Col xs={5}>Opponent's Team: {opponent}</Col>
+                        <Col xs={5}>Your Team: {player}</Col><Col xs={5}>Opponent's Team: {opponent} Win State: {winState.toString()}</Col>
                     </Row>
                     <Row className="message-board__whose-turn mt-3">
                         <Col className="text-center">{whoseTurn}'s Turn</Col>
