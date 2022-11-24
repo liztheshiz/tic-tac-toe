@@ -21,6 +21,8 @@ export default function GameView() {
 
     const [whoseTurn, setWhoseTurn] = useState('X');
     const [winState, setWinState] = useState(false);
+    const [squaresContent, setSquaresContent] = useState(['', '', '', '', '', '', '', '', '']);
+    const [squaresContentView, setSquaresContentView] = useState(['', '', '', '', '', '', '', '', '']);
 
     // Fills square if it is empty, then lets AI take a turn
     const handleClick = (e) => {
@@ -37,6 +39,10 @@ export default function GameView() {
                 setTimeout(aiTurn, 700);
             }
         }
+    }
+
+    const updateView = () => {
+
     }
 
     // Engame logic
@@ -146,7 +152,7 @@ export default function GameView() {
                 </Col>
             </Row>
             <Row className="justify-content-center mt-4">
-                <GameBoard handleClick={(e) => handleClick(e)} />
+                <GameBoard squaresContent={squaresContent} handleClick={(e) => handleClick(e)} />
             </Row>
         </Col>
     )
