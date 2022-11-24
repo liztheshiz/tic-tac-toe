@@ -1,7 +1,3 @@
-import { useLocation, useNavigate } from 'react-router-dom';
-
-import { useState } from 'react';
-
 import Col from 'react-bootstrap/Col';
 
 import './GameBoard.css';
