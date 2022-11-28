@@ -29,20 +29,22 @@ export default function GameView() {
         console.log('PLAYER CLICKED');
         const square = e.target;
 
-        if (!winState && whoseTurn == player && !square.innerText) {
-            fillSquare(square, player);
-            if (!winState) {
-                setWhoseTurn(opponent);
+        /*if (!winState && whoseTurn == player && square.classList.contains('empty')) {*/
+        console.log(`calling fillsquare for player: ${square} ${player}`);
+        fillSquare(square, player);
+        /*if (!winState) {
+            setWhoseTurn(opponent);
 
-                // Wait before AI takes its turn
-                console.log(`about to set timeout for aiTurn after click`);
-                setTimeout(aiTurn, 700);
-            }
-        }
+            // Wait before AI takes its turn
+            console.log(`about to set timeout for aiTurn after click`);
+            setTimeout(aiTurn, 700);
+        }*/
+        //}
     }
 
-    const updateView = () => {
-
+    const updateView = async () => {
+        console.log(`squaresContent in updateView: ${squaresContent}`);
+        await setSquaresContentView(squaresContent);
     }
 
     // Engame logic
@@ -111,11 +113,25 @@ export default function GameView() {
     }
 
     // Fills given square with given letter, removing its 'empty' class
-    const fillSquare = (square, letter) => {
+    const fillSquare = async (square, letter) => {
+        let squareNum;
+        square.classList.forEach((i) => {
+            if (i.includes('square') && i.length == 7) { squareNum = parseInt(i.substring(i.length - 1)) }
+        });
+
+        console.log(`Square: ${square}, squareNum: ${squareNum}`);
+
         square.classList.remove('empty');
-        square.innerText = letter;
+        console.log(`square.classList after remove empty: ${square.classList}`);
+        const newArray = [...squaresContent];
+        newArray[squareNum - 1] = letter;
+        console.log(`newArray: ${newArray}`);
+        const x = await setSquaresContent(newArray);
+        console.log(`squaresContent: ${squaresContent}`);
+        updateView();
+        //square.innerText = letter;
         console.log('about to run winCheck');
-        winCheck(square);
+        //winCheck(square);
     }
 
     // AI takes a turn
@@ -152,7 +168,7 @@ export default function GameView() {
                 </Col>
             </Row>
             <Row className="justify-content-center mt-4">
-                <GameBoard squaresContent={squaresContent} handleClick={(e) => handleClick(e)} />
+                <GameBoard squaresContentView={squaresContentView} handleClick={(e) => handleClick(e)} />
             </Row>
         </Col>
     )
