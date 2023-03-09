@@ -145,6 +145,9 @@ export default function GameView() {
 
         fillSquare(squares.item(num), opponent);
 
+        console.log('about to run winCheck');
+        winCheck(square);
+
         console.log(`finished filling square w no endgame, changing turn to ${player}`);
         console.log(`winState: ${winState}`);
         if (!winState) setWhoseTurn(player);
