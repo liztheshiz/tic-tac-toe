@@ -29,22 +29,20 @@ export default function GameView() {
         console.log('PLAYER CLICKED');
         const square = e.target;
 
-        /*if (!winState && whoseTurn == player && square.classList.contains('empty')) {*/
-        console.log(`calling fillsquare for player: ${square} ${player}`);
-        fillSquare(square, player);
-        /*if (!winState) {
-            setWhoseTurn(opponent);
+        if (!winState && whoseTurn == player && square.classList.contains('empty')) {
+            console.log(`calling fillsquare for player: ${square} ${player}`);
+            fillSquare(square, player);
+            console.log('about to run winCheck');
+            winCheck(square);
 
-            // Wait before AI takes its turn
-            console.log(`about to set timeout for aiTurn after click`);
-            setTimeout(aiTurn, 700);
-        }*/
-        //}
-    }
+            if (!winState) {
+                setWhoseTurn(opponent);
 
-    const updateView = async () => {
-        console.log(`squaresContent in updateView: ${squaresContent}`);
-        await setSquaresContentView(squaresContent);
+                // Wait before AI takes its turn
+                console.log(`about to set timeout for aiTurn after click`);
+                setTimeout(aiTurn, 700);
+            }
+        }
     }
 
     // Engame logic
@@ -60,12 +58,14 @@ export default function GameView() {
         square.classList.forEach((i) => {
             if (i.includes('row')) { row = i }
         });
+        console.log(`row clicked: ${row}`);
 
         // Find col of given square
         let col;
         square.classList.forEach((i) => {
             if (i.includes('col')) { col = i }
         });
+        console.log(`col clicked: ${col}`);
 
         // Find diagonal squares (whether or not given square is in them; inclusion of given square check later)
         let diag1Squares = document.querySelectorAll('.square1, .square5, .square9');
@@ -78,19 +78,24 @@ export default function GameView() {
         });
 
         // Check row for win
-        const rowSquares = document.querySelectorAll(`.${row}`);
-        const rowWin = (rowSquares.item(0).innerText == rowSquares.item(1).innerText) && (rowSquares.item(1).innerText == rowSquares.item(2).innerText);
+        /*const rowSquares = document.querySelectorAll(`.${row}`);
+        const rowWin = (rowSquares.item(0).innerText == rowSquares.item(1).innerText) && (rowSquares.item(1).innerText == rowSquares.item(2).innerText);*/
+
+        console.log(`rowWin: ${rowWin}`);
 
         // Check col for win
         const colSquares = document.querySelectorAll(`.${col}`);
         const colWin = (colSquares.item(0).innerText == colSquares.item(1).innerText) && (colSquares.item(1).innerText == colSquares.item(2).innerText);
+        console.log(`colWin: ${colWin}`);
 
         // Check for diagonal wins
         const squareOnDiag1 = squareNum == 1 || squareNum == 5 || squareNum == 9;
         const diag1Win = squareOnDiag1 && (diag1Squares.item(0).innerText == diag1Squares.item(1).innerText) && (diag1Squares.item(1).innerText == diag1Squares.item(2).innerText);
+        console.log(`diag1Win: ${diag1Win}`);
 
         const squareOnDiag2 = squareNum == 3 || squareNum == 5 || squareNum == 7;
         const diag2Win = squareOnDiag2 && (diag2Squares.item(0).innerText == diag2Squares.item(1).innerText) && (diag2Squares.item(1).innerText == diag2Squares.item(2).innerText);
+        console.log(`diag2Win: ${diag2Win}`);
 
         // Highlight winning squares and go to endgame if a win is present, or go to endgame if last square filled with no winner
         if (rowWin || colWin || diag1Win || diag2Win) {
@@ -123,15 +128,12 @@ export default function GameView() {
 
         square.classList.remove('empty');
         console.log(`square.classList after remove empty: ${square.classList}`);
+
         const newArray = [...squaresContent];
         newArray[squareNum - 1] = letter;
         console.log(`newArray: ${newArray}`);
-        const x = await setSquaresContent(newArray);
-        console.log(`squaresContent: ${squaresContent}`);
-        updateView();
-        //square.innerText = letter;
-        console.log('about to run winCheck');
-        //winCheck(square);
+
+        return await setSquaresContent(newArray);
     }
 
     // AI takes a turn
@@ -153,7 +155,10 @@ export default function GameView() {
         if (player == 'O' && squares.length == 9) {
             setTimeout(aiTurn, 900);
         }
-    }, []);
+
+        setSquaresContentView(squaresContent); // always keeps view updated when data updates
+        console.log(`squaresContent: ${squaresContent}`);
+    }, [squaresContent]);
 
     return (
         <Col xs={8} className="GameView text-center" data-testid="game-view">
