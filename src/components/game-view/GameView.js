@@ -82,8 +82,8 @@ class GameView extends React.Component {
         if (rowWin || colWin || diag1Win || diag2Win) {
             this.setState({
                 winState: true
-            });
-            console.log(`winState after setting it: ${winState.toString()}`);
+            }, () => console.log(`winState after setting it: ${winState.toString()}`));
+
             if (rowWin) rowSquares.forEach((i) => { i.classList.add('win-square') });
             if (colWin) colSquares.forEach((i) => { i.classList.add('win-square') });
             if (diag1Win) diag1Squares.forEach((i) => { i.classList.add('win-square') });
