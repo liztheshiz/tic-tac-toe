@@ -19,6 +19,7 @@ class GameView extends React.Component {
 
         if (!winState && whoseTurn == player && !square.innerText) {
             this.fillSquare(square, player).then(() => {
+                console.log('fillSquare callback called');
                 if (!this.state.winState) {
                     this.setState({
                         whoseTurn: opponent
@@ -91,13 +92,13 @@ class GameView extends React.Component {
                 if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
 
                 console.log('win endgame about to run');
-                console.log(`winState: ${this.state.winState}`);
+                console.log(`winState before endgame: ${this.state.winState}`);
                 return await setTimeout(this.handleEndgame, 600, whoseTurn);
             });
         } else if (!winState && squares.length == 0) {
             console.log('non win endgame about to run');
-            console.log(`winState: ${winState}`);
-            return setTimeout(this.handleEndgame, 600, false);
+            console.log(`winState before game over: ${winState}`);
+            return await setTimeout(this.handleEndgame, 600, false);
         }
         console.log('winCheck run, no endgame');
     }
@@ -123,7 +124,7 @@ class GameView extends React.Component {
         // TODO: callback is running before winCheck call in fillSquare is done
         this.fillSquare(squares.item(num), opponent).then(() => {
             console.log(`finished filling square w no endgame, changing turn to ${player}`);
-            console.log(`winState: ${this.state.winState}`);
+            console.log(`winState before player change: ${this.state.winState}`);
             if (!this.state.winState) this.setState({ whoseTurn: player });
         });
     }
