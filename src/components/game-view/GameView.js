@@ -7,6 +7,7 @@ import './GameView.css';
 
 class GameView extends React.Component {
     // CUSTOM METHODS
+
     // Fills square if it is empty, then lets AI take a turn
     handleClick(e) {
         const { winState, whoseTurn } = this.state;
@@ -19,7 +20,6 @@ class GameView extends React.Component {
         if (!winState && whoseTurn == player && !square.innerText) {
             this.fillSquare(square, player);
             if (!winState) {
-                //setWhoseTurn(opponent);
                 this.setState({
                     whoseTurn: opponent
                 });
@@ -33,7 +33,6 @@ class GameView extends React.Component {
 
     // Engame logic
     handleEndgame(winner) {
-        //alert('game over!');
         this.props.navigate('/gameover', { state: { winner: winner } });
     }
 
@@ -81,7 +80,6 @@ class GameView extends React.Component {
 
         // Highlight winning squares and go to endgame if a win is present, or go to endgame if last square filled with no winner
         if (rowWin || colWin || diag1Win || diag2Win) {
-            //setWinState(true);
             this.setState({
                 winState: true
             });
@@ -130,6 +128,7 @@ class GameView extends React.Component {
 
 
     // LIFECYCLE METHODS
+
     constructor(props) {
         super(props);
         this.state = {
@@ -151,9 +150,7 @@ class GameView extends React.Component {
     }
 
     render() {
-        //const { location } = this.props;
         const { whoseTurn, winState } = this.state;
-
         const { player, opponent } = this.props.location.state;
 
         return (
