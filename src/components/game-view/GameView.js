@@ -112,7 +112,6 @@ class GameView extends React.Component {
 
     // AI takes a turn
     // Fills one empty square randomly with AI team letter
-    // Also triggers endgame
     aiTurn() {
         const { winState, squares } = this.state;
         const { player, opponent } = this.props.location.state;
@@ -121,11 +120,12 @@ class GameView extends React.Component {
         console.log('AI MOVING');
         const num = Math.floor(Math.random() * (squares.length - 1));
 
-        this.fillSquare(squares.item(num), opponent);
-
-        console.log(`finished filling square w no endgame, changing turn to ${player}`);
-        console.log(`winState: ${winState}`);
-        if (!winState) this.setState({ whoseTurn: player });
+        // TODO: callback is running before winCheck call in fillSquare is done
+        this.fillSquare(squares.item(num), opponent).then(() => {
+            console.log(`finished filling square w no endgame, changing turn to ${player}`);
+            console.log(`winState: ${this.state.winState}`);
+            if (!this.state.winState) this.setState({ whoseTurn: player });
+        });
     }
 
 
