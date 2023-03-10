@@ -40,6 +40,7 @@ class GameView extends React.Component {
     // Checks if last played square results in a win
     winCheck(square) {
         const { winState, whoseTurn, squares } = this.state;
+        this.handleEndgame = this.handleEndgame.bind(this);
 
         // Find row of given square
         let row;
@@ -113,9 +114,9 @@ class GameView extends React.Component {
     // Fills one empty square randomly with AI team letter
     // Also triggers endgame
     aiTurn() {
-        console.log(`state in aiTurn: ${this.state.winState}`);
         const { winState, squares } = this.state;
         const { player, opponent } = this.props.location.state;
+        console.log(`state in aiTurn: ${winState.toString()}`);
 
         console.log('AI MOVING');
         const num = Math.floor(Math.random() * (squares.length - 1));
@@ -124,7 +125,7 @@ class GameView extends React.Component {
 
         console.log(`finished filling square w no endgame, changing turn to ${player}`);
         console.log(`winState: ${winState}`);
-        if (!winState) this.setState({ whoseTurn: player });//setWhoseTurn(player);
+        if (!winState) this.setState({ whoseTurn: player });
     }
 
 
@@ -141,8 +142,10 @@ class GameView extends React.Component {
     }
 
     componentDidMount() {
+        this.aiTurn = this.aiTurn.bind(this);
+
         // X always goes first
-        if (this.props.player == 'O' && this.state.squares.length == 9) {
+        if (this.props.location.state.player == 'O' && this.state.squares.length == 9) {
             setTimeout(this.aiTurn, 900);
         }
     }
