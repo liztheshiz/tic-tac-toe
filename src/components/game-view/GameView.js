@@ -82,7 +82,7 @@ class GameView extends React.Component {
 
         // Highlight winning squares and go to endgame if a win is present, or go to endgame if last square filled with no winner
         if (rowWin || colWin || diag1Win || diag2Win) {
-            return this.setState({
+            return await this.setState({
                 winState: true
             }, async () => {
                 console.log(`winState after setting it: ${this.state.winState.toString()}`);
