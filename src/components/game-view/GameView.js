@@ -18,16 +18,17 @@ class GameView extends React.Component {
         const square = e.target;
 
         if (!winState && whoseTurn == player && !square.innerText) {
-            this.fillSquare(square, player);
-            if (!winState) {
-                this.setState({
-                    whoseTurn: opponent
-                });
+            this.fillSquare(square, player).then(() => {
+                if (!this.state.winState) {
+                    this.setState({
+                        whoseTurn: opponent
+                    });
 
-                // Wait before AI takes its turn
-                console.log(`about to set timeout for aiTurn after click`);
-                setTimeout(this.aiTurn, 700);
-            }
+                    // Wait before AI takes its turn
+                    console.log(`about to set timeout for aiTurn after click`);
+                    setTimeout(this.aiTurn, 700);
+                }
+            });
         }
     }
 
@@ -37,7 +38,7 @@ class GameView extends React.Component {
     }
 
     // Checks if last played square results in a win
-    winCheck(square) {
+    async winCheck(square) {
         const { winState, whoseTurn, squares } = this.state;
         this.handleEndgame = this.handleEndgame.bind(this);
 
@@ -80,18 +81,19 @@ class GameView extends React.Component {
 
         // Highlight winning squares and go to endgame if a win is present, or go to endgame if last square filled with no winner
         if (rowWin || colWin || diag1Win || diag2Win) {
-            this.setState({
+            return this.setState({
                 winState: true
-            }, () => console.log(`winState after setting it: ${winState.toString()}`));
+            }, async () => {
+                console.log(`winState after setting it: ${this.state.winState.toString()}`);
+                if (rowWin) rowSquares.forEach((i) => { i.classList.add('win-square') });
+                if (colWin) colSquares.forEach((i) => { i.classList.add('win-square') });
+                if (diag1Win) diag1Squares.forEach((i) => { i.classList.add('win-square') });
+                if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
 
-            if (rowWin) rowSquares.forEach((i) => { i.classList.add('win-square') });
-            if (colWin) colSquares.forEach((i) => { i.classList.add('win-square') });
-            if (diag1Win) diag1Squares.forEach((i) => { i.classList.add('win-square') });
-            if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
-
-            console.log('win endgame about to run');
-            console.log(`winState: ${winState}`);
-            return setTimeout(this.handleEndgame, 600, whoseTurn);
+                console.log('win endgame about to run');
+                console.log(`winState: ${this.state.winState}`);
+                return await setTimeout(this.handleEndgame, 600, whoseTurn);
+            });
         } else if (!winState && squares.length == 0) {
             console.log('non win endgame about to run');
             console.log(`winState: ${winState}`);
@@ -101,11 +103,11 @@ class GameView extends React.Component {
     }
 
     // Fills given square with given letter, removing its 'empty' class
-    fillSquare(square, letter) {
+    async fillSquare(square, letter) {
         square.classList.remove('empty');
         square.innerText = letter;
         console.log('about to run winCheck');
-        this.winCheck(square);
+        return await this.winCheck(square);
     }
 
     // AI takes a turn
