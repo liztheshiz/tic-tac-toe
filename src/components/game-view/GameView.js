@@ -18,16 +18,19 @@ class GameView extends React.Component {
         const square = e.target;
 
         if (!winState && whoseTurn == player && !square.innerText) {
-            this.fillSquare(square, player).then(() => {
-                console.log('fillSquare callback called');
+            this.fillSquare(square, player);
+            console.log('handleClick(): about to call winCheck');
+            this.winCheck(square).then(async () => {
+                console.log('handleClick(): winCheck done, no endgame and callback called');
+                console.log(`handleClick(): winState before player change: ${this.state.winState}`);
                 if (!this.state.winState) {
                     this.setState({
                         whoseTurn: opponent
                     });
 
                     // Wait before AI takes its turn
-                    console.log(`about to set timeout for aiTurn after click`);
-                    setTimeout(this.aiTurn, 700);
+                    console.log(`handleClick(): about to set timeout for aiTurn after click`);
+                    return await setTimeout(this.aiTurn, 700);
                 }
             });
         }
@@ -82,49 +85,51 @@ class GameView extends React.Component {
 
         // Highlight winning squares and go to endgame if a win is present, or go to endgame if last square filled with no winner
         if (rowWin || colWin || diag1Win || diag2Win) {
+            console.log('winState(): we are in the endgame if statement');
             return await this.setState({
                 winState: true
             }, async () => {
-                console.log(`winState after setting it: ${this.state.winState.toString()}`);
+                console.log(`winCheck(): winState after setting it: ${this.state.winState.toString()}`);
                 if (rowWin) rowSquares.forEach((i) => { i.classList.add('win-square') });
                 if (colWin) colSquares.forEach((i) => { i.classList.add('win-square') });
                 if (diag1Win) diag1Squares.forEach((i) => { i.classList.add('win-square') });
                 if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
 
-                console.log('win endgame about to run');
-                console.log(`winState before endgame: ${this.state.winState}`);
+                console.log('winCheck(): win endgame about to run');
                 return await setTimeout(this.handleEndgame, 600, whoseTurn);
             });
         } else if (!winState && squares.length == 0) {
-            console.log('non win endgame about to run');
-            console.log(`winState before game over: ${winState}`);
+            console.log('winCheck(): non win endgame about to run');
+            console.log(`winCheck(): winState before game over: ${winState}`);
             return await setTimeout(this.handleEndgame, 600, false);
         }
-        console.log('winCheck run, no endgame');
+        console.log('winCheck(): winCheck run, no endgame');
     }
 
     // Fills given square with given letter, removing its 'empty' class
-    async fillSquare(square, letter) {
+    fillSquare(square, letter) {
         square.classList.remove('empty');
         square.innerText = letter;
-        console.log('about to run winCheck');
-        return await this.winCheck(square);
+        console.log('fillSquare(): square filled, about to run winCheck');
     }
 
     // AI takes a turn
     // Fills one empty square randomly with AI team letter
-    aiTurn() {
+    async aiTurn() {
         const { winState, squares } = this.state;
         const { player, opponent } = this.props.location.state;
-        console.log(`state in aiTurn: ${winState.toString()}`);
 
         console.log('AI MOVING');
-        const num = Math.floor(Math.random() * (squares.length - 1));
+        //console.log(`state in aiTurn: ${winState.toString()}`);
+        //const num = Math.floor(Math.random() * (squares.length - 1));
+        const square = squares.item(Math.floor(Math.random() * (squares.length - 1)));
 
         // TODO: callback is running before winCheck call in fillSquare is done
-        this.fillSquare(squares.item(num), opponent).then(() => {
-            console.log(`finished filling square w no endgame, changing turn to ${player}`);
-            console.log(`winState before player change: ${this.state.winState}`);
+        this.fillSquare(square, opponent);
+        console.log('aiTurn(): about to call winCheck');
+        this.winCheck(square).then(() => {
+            console.log('aiTurn(): winCheck done, no endgame and callback called');
+            console.log(`aiTurn(): winState before player change: ${this.state.winState}`);
             if (!this.state.winState) this.setState({ whoseTurn: player });
         });
     }
