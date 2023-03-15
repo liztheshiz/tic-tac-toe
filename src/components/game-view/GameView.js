@@ -19,11 +19,8 @@ class GameView extends React.Component {
 
         if (!winState && whoseTurn == player && !square.innerText) {
             this.fillSquare(square, player);
-            console.log('handleClick(): about to call winCheck');
             this.winCheck(square);
-            console.log('handleClick(): winCheck run');
         }
-        console.log('handleClick(): handleClick done');
     }
 
     // Engame logic
@@ -76,25 +73,19 @@ class GameView extends React.Component {
 
         // Highlight winning squares and go to endgame if a win is present, or go to endgame if last square filled with no winner
         if (rowWin || colWin || diag1Win || diag2Win) {
-            console.log('winCheck(): we are in the endgame if statement');
             this.setState({
                 winState: true
             }, () => {
-                console.log(`winCheck(): winState after setting it: ${this.state.winState.toString()}`);
                 if (rowWin) rowSquares.forEach((i) => { i.classList.add('win-square') });
                 if (colWin) colSquares.forEach((i) => { i.classList.add('win-square') });
                 if (diag1Win) diag1Squares.forEach((i) => { i.classList.add('win-square') });
                 if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
 
-                console.log('winCheck(): win endgame about to run');
                 return setTimeout(this.handleEndgame, 600, whoseTurn);
             });
         } else if (!winState && squares.length == 0) {
-            console.log('winCheck(): non win endgame about to run');
-            console.log(`winCheck(): winState before game over: ${winState}`);
             return setTimeout(this.handleEndgame, 600, false);
         } else {
-            console.log('winCheck(): winCheck run, no endgame; changing player');
             if (whoseTurn == player) {
                 this.setState({ whoseTurn: opponent }, () => setTimeout(this.aiTurn, 700));
             } else if (whoseTurn == opponent) this.setState({ whoseTurn: player });
@@ -105,7 +96,6 @@ class GameView extends React.Component {
     fillSquare(square, letter) {
         square.classList.remove('empty');
         square.innerText = letter;
-        console.log('fillSquare(): square filled, about to run winCheck');
     }
 
     // AI takes a turn
@@ -118,9 +108,7 @@ class GameView extends React.Component {
         const square = squares.item(Math.floor(Math.random() * (squares.length - 1)));
 
         this.fillSquare(square, opponent);
-        console.log('aiTurn(): about to call winCheck');
         this.winCheck(square);
-        console.log('aiTurn(): winCheck run, aiTurn done');
     }
 
 
