@@ -14,7 +14,6 @@ class GameView extends React.Component {
         const { player, opponent } = this.props.location.state;
         this.aiTurn = this.aiTurn.bind(this);
 
-        console.log('PLAYER CLICKED');
         const square = e.target;
 
         if (!winState && whoseTurn == player && !square.innerText) {
@@ -104,7 +103,6 @@ class GameView extends React.Component {
         const { winState, squares } = this.state;
         const { player, opponent } = this.props.location.state;
 
-        console.log('AI MOVING');
         const square = squares.item(Math.floor(Math.random() * (squares.length - 1)));
 
         this.fillSquare(square, opponent);
