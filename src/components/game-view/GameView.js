@@ -8,7 +8,7 @@ import './GameView.css';
 class GameView extends React.Component {
     // CUSTOM METHODS
 
-    // Fills square if it is empty, then lets AI take a turn
+    // Fills square if it is empty and if it is player's turn, then runs winCheck
     handleClick(e) {
         const { winState, whoseTurn } = this.state;
         const { player, opponent } = this.props.location.state;
@@ -22,9 +22,23 @@ class GameView extends React.Component {
         }
     }
 
-    // Engame logic
-    handleEndgame(winner) {
-        this.props.navigate('/gameover', { state: { winner: winner } });
+    // AI takes a turn, then runs winCheck
+    // Fills one empty square RANDOMLY with AI team letter
+    // TODO: Improve AI
+    async aiTurn() {
+        const { squares } = this.state;
+        const { opponent } = this.props.location.state;
+
+        const square = squares.item(Math.floor(Math.random() * (squares.length - 1)));
+
+        this.fillSquare(square, opponent);
+        this.winCheck(square);
+    }
+
+    // Fills given square with given letter, removing its 'empty' class
+    fillSquare(square, letter) {
+        square.classList.remove('empty');
+        square.innerText = letter;
     }
 
     // Checks if last played square results in a win
@@ -80,10 +94,11 @@ class GameView extends React.Component {
                 if (diag1Win) diag1Squares.forEach((i) => { i.classList.add('win-square') });
                 if (diag2Win) diag2Squares.forEach((i) => { i.classList.add('win-square') });
 
-                return setTimeout(this.handleEndgame, 600, whoseTurn);
+                setTimeout(this.handleEndgame, 600, whoseTurn);
             });
         } else if (!winState && squares.length == 0) {
-            return setTimeout(this.handleEndgame, 600, false);
+            setTimeout(this.handleEndgame, 600, false);
+            // If no endgame, change turns, and run aiTurn if changing to opponent's turn
         } else {
             if (whoseTurn == player) {
                 this.setState({ whoseTurn: opponent }, () => setTimeout(this.aiTurn, 700));
@@ -91,22 +106,9 @@ class GameView extends React.Component {
         }
     }
 
-    // Fills given square with given letter, removing its 'empty' class
-    fillSquare(square, letter) {
-        square.classList.remove('empty');
-        square.innerText = letter;
-    }
-
-    // AI takes a turn
-    // Fills one empty square randomly with AI team letter
-    async aiTurn() {
-        const { winState, squares } = this.state;
-        const { player, opponent } = this.props.location.state;
-
-        const square = squares.item(Math.floor(Math.random() * (squares.length - 1)));
-
-        this.fillSquare(square, opponent);
-        this.winCheck(square);
+    // Engame logic
+    handleEndgame(winner) {
+        this.props.navigate('/gameover', { state: { winner: winner } });
     }
 
 
