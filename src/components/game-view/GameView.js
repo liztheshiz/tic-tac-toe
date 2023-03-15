@@ -139,18 +139,18 @@ class GameView extends React.Component {
         const { player, opponent } = this.props.location.state;
 
         return (
-            <Col xs={8} className="GameView text-center" data-testid="game-view">
+            <Col xs={12} md={10} className="GameView text-center" data-testid="game-view">
                 <Row className="message-board">
                     <Col>
                         <Row className="justify-content-center message-board__teams">
-                            <Col xs={5}>Your Team: {player}</Col><Col xs={5}>Opponent's Team: {opponent} Win State: {winState.toString()}</Col>
+                            <Col className="message-board__team" xs={12}>Your Letter: {player}</Col>
                         </Row>
-                        <Row className="message-board__whose-turn mt-3">
+                        <Row className="message-board__whose-turn mt-5">
                             <Col className="text-center">{whoseTurn}'s Turn</Col>
                         </Row>
                     </Col>
                 </Row>
-                <Row className="justify-content-center mt-4">
+                <Row className="justify-content-center mt-5">
                     <Col xs={6} className="justify-content-center text-center">
                         <div className="game-board justify-content-center" data-testid="game-board">
                             <div className="game-board__square row1 col1 square1 empty" onClick={this.handleClick}></div>
