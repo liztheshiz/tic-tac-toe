@@ -7,12 +7,12 @@ import './Home.css';
 
 export default function Home() {
     return (
-        <Col xs={4} className="Home">
+        <Col xs={5} xl={4} className="Home">
             <Row className="main-title justify-content-center text-left">
-                <Col xs={7}>
-                    <Row className="main-title__row"><Col className="tic">TIC</Col></Row>
-                    <Row className="main-title__row"><Col className="tac">TAC</Col></Row>
-                    <Row className="main-title__row"><Col className="toe">TOE</Col></Row>
+                <Col xs={12} md={12} lg={9} xl={9}>
+                    <Row className="main-title__row"><Col className="letter" xs={4}>T</Col><Col className="letter" xs={4}>I</Col><Col className="letter" xs={4}>C</Col></Row>
+                    <Row className="main-title__row"><Col className="letter" xs={4}>T</Col><Col className="letter" xs={4}>A</Col><Col className="letter" xs={4}>C</Col></Row>
+                    <Row className="main-title__row"><Col className="letter" xs={4}>T</Col><Col className="letter" xs={4}>O</Col><Col className="letter" xs={4}>E</Col></Row>
                 </Col>
             </Row >
             <Row className="buttons mt-5 justify-content-center">

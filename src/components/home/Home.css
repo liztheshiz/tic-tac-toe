@@ -5,11 +5,18 @@
 .main-title {
     font-size: 100px;
     font-weight: 900;
+    /*background-color: yellow;*/
 }
 
 .main-title__row {
-    line-height: 100px;
-    letter-spacing: 10px;
+    line-height: 110px;
+}
+
+.letter {
+    text-align: center;
+    letter-spacing: 0;
+    /*background-color: red;
+    border: 1px solid black;*/
 }
 
 .tic {
