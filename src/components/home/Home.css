@@ -84,14 +84,6 @@
     border: 1px solid black;*/
 }
 
-.tic {
-    letter-spacing: 31px;
-}
-
-.toe {
-    letter-spacing: 14px;
-}
-
 .start-button {
     font-size: 50px;
     font-weight: 500;
@@ -105,9 +97,87 @@
 
 .start-button:hover,
 .start-button:focus {
-    box-shadow: rgba(70, 60, 50, 0.15) 0px 5px 15px;
+    /*box-shadow: rgba(70, 60, 50, 0.15) 0px 5px 15px;*/
 }
 
 .start-button:active {
     box-shadow: rgba(70, 60, 50, 0.25) 0px 5px 5px -5px inset, rgba(0, 0, 0, 0.3) 0px 5px 30px -18px inset;
+}
+
+.red {
+    background-color: red;
+}
+
+.circle-container {}
+
+.circle {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+}
+
+.circle-left {
+    width: 25px;
+    height: 50px;
+    border: 8px solid black;
+    border-top-left-radius: 25px;
+    border-bottom-left-radius: 25px;
+    border-right: 0;
+    position: absolute;
+    box-sizing: border-box;
+    z-index: -1;
+    transition: all 0s linear 1s;
+}
+
+.circle-right {
+    width: 25px;
+    height: 50px;
+    border: 8px solid black;
+    border-bottom-right-radius: 25px;
+    border-top-right-radius: 25px;
+    border-left: 0;
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    z-index: 1;
+    transition: all 0s linear 1s;
+}
+
+.rectangle-left {
+    width: 25px;
+    height: 50px;
+    background-color: white;
+}
+
+.rectangle-left-wrapper {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: -1;
+    transition: all 1s ease-out 1s;
+}
+
+.rectangle-right {
+    width: 25px;
+    height: 50px;
+    right: 0;
+    position: absolute;
+    background-color: white;
+}
+
+.rectangle-right-wrapper {
+    width: 50px;
+    height: 50px;
+    position: absolute;
+    z-index: 2;
+    transition: transform 1s ease-in;
+    transition: opacity 1s 0s;
+}
+
+.rotate {
+    transform: rotate(180deg);
+}
+
+.disappear {
+    opacity: 0;
 }
