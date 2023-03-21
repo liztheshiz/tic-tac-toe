@@ -12,7 +12,7 @@ import Col from 'react-bootstrap/Col';
 import './App.css';
 
 import Home from '../home/Home';
-import GameView from "../game-view/GameView";
+import Wrapper from "../wrapper/Wrapper";
 import GameOverView from "../game-over-view/GameOverView";
 
 function App() {
@@ -22,7 +22,7 @@ function App() {
                 <Row className="justify-content-center">
                     <Routes>
                         <Route path="/" element={<Home />} />
-                        <Route path="/play" element={<GameView />} />
+                        <Route path="/play" element={<Wrapper />} />
                         <Route path="/gameover" element={<GameOverView />} />
                     </Routes>
                 </Row>

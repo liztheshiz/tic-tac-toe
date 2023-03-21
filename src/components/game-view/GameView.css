@@ -2,6 +2,10 @@
     --border: 4px var(--text-color) solid;
 }
 
+.GameView {
+    padding-top: 60px;
+}
+
 .message-board__teams {
     font-size: 30px;
 }
@@ -43,4 +47,18 @@
 
 .win-square {
     background-color: #7d6955;
+}
+
+/* RESPONSIVE ELEMENTS */
+
+@media all and (max-width: 1000px) {
+    .GameView {
+        padding-top: 40px;
+    }
+}
+
+@media all and (max-width: 575px) {
+    .GameView {
+        padding-top: 30px;
+    }
 }

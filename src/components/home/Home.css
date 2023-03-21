@@ -1,5 +1,13 @@
+:root {
+    --circle-radius: 70px;
+    --half-circle-radius: 35px;
+
+    /* WARNING: If you change this value, you MUST change the Timout functions in Home.js to correspond! */
+    --circle-transition: .4s;
+}
+
 .Home {
-    padding-top: 6%;
+    padding-top: 100px;
 }
 
 .main-title {
@@ -8,34 +16,193 @@
 }
 
 .main-title__row {
-    line-height: 100px;
-    letter-spacing: 10px;
+    line-height: 110px;
+    position: relative;
 }
 
-.tic {
-    letter-spacing: 31px;
+.main-title__row__1::after {
+    content: "";
+    position: absolute;
+    background-color: var(--text-color);
+    transform: translateY(51px);
+    width: 0;
+    height: 7px;
+    border-radius: 3px;
+    transition: all .75s ease;
 }
 
-.toe {
-    letter-spacing: 14px;
+.main-title__row__1:hover::after {
+    width: 100%
+}
+
+.main-title__row__2 {
+    position: relative;
+}
+
+.main-title__row__2::after {
+    content: "";
+    position: absolute;
+    align-items: center;
+    transform: translate(-48px, 50px) rotate(315deg);
+    z-index: -2;
+    background-color: var(--text-color);
+    width: 130%;
+    height: 7px;
+    border-radius: 3px;
+    opacity: 1;
+}
+
+.main-title__row__2::before {
+    content: "";
+    background-color: var(--background-color);
+    transform: translateY(-120px);
+    width: 100%;
+    height: 350px;
+    z-index: -1;
+    position: absolute;
+    right: 0;
+    transition: all .75s ease;
+}
+
+.main-title__row__2:hover::before {
+    opacity: 1;
+    width: 0;
+}
+
+.main-title__row__3::after {
+    content: "";
+    position: absolute;
+    background-color: var(--text-color);
+    transform: translateY(51px);
+    width: 0;
+    height: 7px;
+    border-radius: 3px;
+    transition: all .75s ease;
+}
+
+.main-title__row__3:hover::after {
+    width: 100%
+}
+
+.letter {
+    text-align: center;
+    letter-spacing: 0;
+}
+
+.button-container {
+    height: var(--circle-radius);
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.link {
+    z-index: 1;
 }
 
 .start-button {
     font-size: 50px;
     font-weight: 500;
-    height: 50px;
-    line-height: 50px;
-    background-color: var(--background-color);
+    height: var(--circle-radius);
+    line-height: var(--circle-radius);
+    background-color: transparent;
     color: var(--text-color);
     border: none;
-    border-radius: 6px;
+    cursor: pointer
 }
 
-.start-button:hover,
-.start-button:focus {
-    box-shadow: rgba(70, 60, 50, 0.15) 0px 5px 15px;
+/* RED CLASS FOR TESTING */
+.red {
+    border: 8px solid red;
 }
 
-.start-button:active {
-    box-shadow: rgba(70, 60, 50, 0.25) 0px 5px 5px -5px inset, rgba(0, 0, 0, 0.3) 0px 5px 30px -18px inset;
+.circle-container {
+    height: var(--circle-radius);
+    width: var(--circle-radius);
+    position: absolute;
+}
+
+.circle {
+    width: var(--circle-radius);
+    height: var(--circle-radius);
+    position: absolute;
+}
+
+.circle-left {
+    width: var(--half-circle-radius);
+    height: var(--circle-radius);
+    border: 7px solid var(--text-color);
+    border-top-left-radius: var(--half-circle-radius);
+    border-bottom-left-radius: var(--half-circle-radius);
+    border-right: 0;
+    position: absolute;
+    box-sizing: border-box;
+    opacity: .8;
+    z-index: -1;
+}
+
+.circle-right {
+    width: var(--half-circle-radius);
+    height: var(--circle-radius);
+    border: 7px solid var(--text-color);
+    border-bottom-right-radius: var(--half-circle-radius);
+    border-top-right-radius: var(--half-circle-radius);
+    border-left: 0;
+    box-sizing: border-box;
+    position: absolute;
+    right: 0;
+    opacity: .8;
+    z-index: -3;
+}
+
+.rectangle-left {
+    width: var(--half-circle-radius);
+    height: var(--circle-radius);
+    position: absolute;
+    background-color: var(--background-color);
+}
+
+.rectangle-right-wrapper {
+    width: var(--circle-radius);
+    height: var(--circle-radius);
+    position: absolute;
+    z-index: -3;
+    transition: transform var(--circle-transition) ease-in;
+}
+
+.rectangle-right {
+    width: var(--half-circle-radius);
+    height: var(--circle-radius);
+    right: 0;
+    position: absolute;
+    background-color: var(--background-color);
+}
+
+.rectangle-left-wrapper {
+    width: var(--circle-radius);
+    height: var(--circle-radius);
+    position: absolute;
+    opacity: 1;
+    z-index: -1;
+    transition: transform var(--circle-transition) ease-out, opacity 0s var(--circle-transition);
+}
+
+.delay {
+    transition-delay: var(--circle-transition);
+}
+
+.ease-in {
+    transition-timing-function: ease-in;
+}
+
+.ease-out {
+    transition-timing-function: ease-out;
+}
+
+.rotate {
+    transform: rotate(-180deg);
+}
+
+.disappear {
+    opacity: 0;
 }
