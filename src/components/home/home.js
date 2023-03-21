@@ -10,20 +10,20 @@ export default function Home() {
         let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
         let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
 
-        rectangleLeftWrapper.classList.add("rotate", "delay", "ease-out");
+        rectangleRightWrapper.classList.add("rotate", "delay", "ease-out");
 
-        rectangleRightWrapper.classList.remove("delay");
-        rectangleRightWrapper.classList.add("rotate", "disappear", "ease-in");
+        rectangleLeftWrapper.classList.remove("delay");
+        rectangleLeftWrapper.classList.add("rotate", "disappear", "ease-in");
     }
 
     const buttonUnHover = (letter) => {
         let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
         let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
 
-        rectangleLeftWrapper.classList.remove("rotate", "delay", "ease-out");
+        rectangleRightWrapper.classList.remove("rotate", "delay", "ease-out");
 
-        rectangleRightWrapper.classList.add("delay");
-        rectangleRightWrapper.classList.remove("rotate", "disappear", "ease-in");
+        rectangleLeftWrapper.classList.add("delay");
+        rectangleLeftWrapper.classList.remove("rotate", "disappear", "ease-in");
     }
 
     return (
