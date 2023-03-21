@@ -137,6 +137,7 @@
     border-right: 0;
     position: absolute;
     box-sizing: border-box;
+    opacity: .8;
     z-index: -3;
 }
 
@@ -150,6 +151,7 @@
     box-sizing: border-box;
     position: absolute;
     right: 0;
+    opacity: .8;
     z-index: -1;
 }
 
