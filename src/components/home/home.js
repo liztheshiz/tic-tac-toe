@@ -54,7 +54,7 @@ export default function Home() {
                                 <div className="rectangle-right"></div>
                             </div>
                         </div>
-                        <Link className="link" to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button" onMouseLeave={buttonUnHover}>X</button></Link>
+                        <Link to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button" onMouseLeave={buttonUnHover}>X</button></Link>
                     </div>
                 </Col>
                 <Col xs={3} className="justify-content-center button-col text-center"><Link to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link></Col>
