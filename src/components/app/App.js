@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import {
     BrowserRouter as Router,
     Routes,
-    Route
+    Route,
+    useLocation
 } from "react-router-dom";
+import { CSSTransition, TransitionGroup } from "react-transition-group";
 
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
@@ -15,16 +17,36 @@ import Home from '../home/Home';
 import Wrapper from "../wrapper/Wrapper";
 import GameOverView from "../game-over-view/GameOverView";
 
+const AnimatedSwitch = () => {
+    const location = useLocation();
+
+    console.log("location", location);
+
+    const [transitionName, setTransitionName] = useState("next");
+
+    return (
+        <TransitionGroup component={null}>
+            <CSSTransition
+                key={location.pathname}
+                classNames={transitionName}
+                timeout={1000}
+            >
+                <Routes location={location}>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/play" element={<Wrapper />} />
+                    <Route path="/gameover" element={<GameOverView />} />
+                </Routes>
+            </CSSTransition>
+        </TransitionGroup>
+    );
+};
+
 function App() {
     return (
         <Router className="text-center">
             <Container className="App">
                 <Row className="justify-content-center">
-                    <Routes>
-                        <Route path="/" element={<Home />} />
-                        <Route path="/play" element={<Wrapper />} />
-                        <Route path="/gameover" element={<GameOverView />} />
-                    </Routes>
+                    <AnimatedSwitch />
                 </Row>
             </Container>
         </Router>
