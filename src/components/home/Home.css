@@ -1,3 +1,8 @@
+:root {
+    --circle-radius: 70px;
+    --half-circle-radius: 35px;
+}
+
 .Home {
     padding-top: 100px;
 }
@@ -5,7 +10,6 @@
 .main-title {
     font-size: 100px;
     font-weight: 900;
-    /*background-color: yellow;*/
 }
 
 .main-title__row {
@@ -80,24 +84,35 @@
 .letter {
     text-align: center;
     letter-spacing: 0;
-    /*background-color: red;
-    border: 1px solid black;*/
+}
+
+.button-container {
+    height: var(--circle-radius);
+    display: flex;
+    justify-content: center;
+    align-content: center;
 }
 
 .start-button {
     font-size: 50px;
     font-weight: 500;
-    height: 50px;
-    line-height: 50px;
-    background-color: var(--background-color);
+    height: var(--circle-radius);
+    line-height: var(--circle-radius);
+    background-color: transparent;
     color: var(--text-color);
     border: none;
-    border-radius: 6px;
 }
 
-.start-button:hover,
-.start-button:focus {
-    /*box-shadow: rgba(70, 60, 50, 0.15) 0px 5px 15px;*/
+.button-container:hover .rectangle-left-wrapper,
+.button-container:focus .rectangle-left-wrapper,
+.button-container:hover .rectangle-right-wrapper,
+.button-container:focus .rectangle-right-wrapper {
+    transform: rotate(180deg);
+}
+
+.button-container:hover .rectangle-right-wrapper,
+.button-container:focus .rectangle-right-wrapper {
+    opacity: 0;
 }
 
 .start-button:active {
@@ -108,70 +123,72 @@
     background-color: red;
 }
 
-.circle-container {}
+.circle-container {
+    height: var(--circle-radius);
+    width: var(--circle-radius);
+    position: absolute;
+}
 
 .circle {
-    width: 50px;
-    height: 50px;
+    width: var(--circle-radius);
+    height: var(--circle-radius);
     position: absolute;
 }
 
 .circle-left {
-    width: 25px;
-    height: 50px;
-    border: 8px solid black;
-    border-top-left-radius: 25px;
-    border-bottom-left-radius: 25px;
+    width: var(--half-circle-radius);
+    height: var(--circle-radius);
+    border: 7px solid var(--text-color);
+    border-top-left-radius: var(--half-circle-radius);
+    border-bottom-left-radius: var(--half-circle-radius);
     border-right: 0;
     position: absolute;
     box-sizing: border-box;
-    z-index: -1;
-    transition: all 0s linear 1s;
+    z-index: -3;
 }
 
 .circle-right {
-    width: 25px;
-    height: 50px;
-    border: 8px solid black;
-    border-bottom-right-radius: 25px;
-    border-top-right-radius: 25px;
+    width: var(--half-circle-radius);
+    height: var(--circle-radius);
+    border: 7px solid var(--text-color);
+    border-bottom-right-radius: var(--half-circle-radius);
+    border-top-right-radius: var(--half-circle-radius);
     border-left: 0;
     box-sizing: border-box;
     position: absolute;
     right: 0;
-    z-index: 1;
-    transition: all 0s linear 1s;
+    z-index: -1;
 }
 
 .rectangle-left {
-    width: 25px;
-    height: 50px;
-    background-color: white;
+    width: var(--half-circle-radius);
+    height: var(--circle-radius);
+    position: absolute;
+    background-color: var(--background-color);
 }
 
 .rectangle-left-wrapper {
-    width: 50px;
-    height: 50px;
+    width: var(--circle-radius);
+    height: var(--circle-radius);
     position: absolute;
-    z-index: -1;
-    transition: all 1s ease-out 1s;
+    z-index: -3;
+    transition: all .5s ease-out .5s;
 }
 
 .rectangle-right {
-    width: 25px;
-    height: 50px;
+    width: var(--half-circle-radius);
+    height: var(--circle-radius);
     right: 0;
     position: absolute;
-    background-color: white;
+    background-color: var(--background-color);
 }
 
 .rectangle-right-wrapper {
-    width: 50px;
-    height: 50px;
+    width: var(--circle-radius);
+    height: var(--circle-radius);
     position: absolute;
-    z-index: 2;
-    transition: transform 1s ease-in;
-    transition: opacity 1s 0s;
+    z-index: -1;
+    transition: transform .5s ease-in, opacity 0s .5s;
 }
 
 .rotate {
