@@ -6,18 +6,22 @@ import Col from 'react-bootstrap/Col';
 import './Home.css';
 
 export default function Home() {
-    const buttonHover = () => {
-        let rectangleLeftWrapper = document.querySelector(".rectangle-left-wrapper");
-        let rectangleRightWrapper = document.querySelector(".rectangle-right-wrapper");
-        rectangleLeftWrapper.classList.add("rotate");
-        rectangleRightWrapper.classList.add("rotate", "disappear");
+    const buttonHover = (letter) => {
+        console.log(`letter: ${letter}`);
+        let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
+        let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
+        rectangleRightWrapper.classList.add("rotate", "ease-in");
+
+        setTimeout(() => { rectangleLeftWrapper.classList.add("rotate", "ease-out"); rectangleRightWrapper.classList.add("disappear"); }, 400);
     }
 
-    const buttonUnHover = () => {
-        let rectangleLeftWrapper = document.querySelector(".rectangle-left-wrapper");
-        let rectangleRightWrapper = document.querySelector(".rectangle-right-wrapper");
-        rectangleLeftWrapper.classList.remove("rotate");
-        rectangleRightWrapper.classList.remove("rotate", "disappear");
+    const buttonUnHover = (letter) => {
+        let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
+        let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
+        rectangleLeftWrapper.classList.remove("rotate", "ease-out");
+
+
+        setTimeout(() => { rectangleRightWrapper.classList.remove("rotate", "ease-in", "disappear"); }, 400);
     }
 
     return (
@@ -31,23 +35,39 @@ export default function Home() {
             </Row >
             <Row className="buttons mt-5 justify-content-center">
                 <Col xs={3} className="justify-content-center button-col text-center">
-                    <div className="button-container" onMouseEnter={buttonHover} onMouseLeave={buttonUnHover}>
+                    <div className="button-container" onMouseEnter={() => buttonHover('x')} onMouseLeave={() => buttonUnHover('x')}>
                         <div className="circle-container">
                             <div className="circle">
                                 <div className="circle-left"></div>
                                 <div className="circle-right"></div>
                             </div>
-                            <div className="rectangle-left-wrapper">
+                            <div className="rectangle-left-wrapper rectangle-left-wrapper-x ease-out">
                                 <div className="rectangle-left"></div>
                             </div>
-                            <div className="rectangle-right-wrapper">
+                            <div className="rectangle-right-wrapper rectangle-right-wrapper-x ease-in">
                                 <div className="rectangle-right"></div>
                             </div>
                         </div>
                         <Link to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button">X</button></Link>
                     </div>
                 </Col>
-                <Col xs={3} className="justify-content-center button-col text-center"><Link to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link></Col>
+                <Col xs={3} className="justify-content-center button-col text-center">
+                    <div className="button-container" onMouseEnter={() => buttonHover('o')} onMouseLeave={() => buttonUnHover('o')}>
+                        <div className="circle-container">
+                            <div className="circle">
+                                <div className="circle-left"></div>
+                                <div className="circle-right"></div>
+                            </div>
+                            <div className="rectangle-left-wrapper rectangle-left-wrapper-o ease-out">
+                                <div className="rectangle-left"></div>
+                            </div>
+                            <div className="rectangle-right-wrapper rectangle-right-wrapper-o ease-in">
+                                <div className="rectangle-right"></div>
+                            </div>
+                        </div>
+                        <Link to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link>
+                    </div>
+                </Col>
             </Row>
         </Col >
     )

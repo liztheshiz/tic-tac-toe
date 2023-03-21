@@ -1,6 +1,9 @@
 :root {
     --circle-radius: 70px;
     --half-circle-radius: 35px;
+
+    /* WARNING: If you change this value, you MUST change the Timout functions in Home.js to correspond! */
+    --circle-transition: .4s;
 }
 
 .Home {
@@ -91,6 +94,7 @@
     display: flex;
     justify-content: center;
     align-content: center;
+    cursor: pointer
 }
 
 .start-button {
@@ -150,6 +154,7 @@
     height: var(--circle-radius);
     position: absolute;
     background-color: var(--background-color);
+    background-color: var(--background-color);
 }
 
 .rectangle-left-wrapper {
@@ -157,7 +162,7 @@
     height: var(--circle-radius);
     position: absolute;
     z-index: -3;
-    transition: all .5s ease-out .5s;
+    transition: transform var(--circle-transition) ease-in;
 }
 
 .rectangle-right {
@@ -172,8 +177,17 @@
     width: var(--circle-radius);
     height: var(--circle-radius);
     position: absolute;
+    opacity: 1;
     z-index: -1;
-    transition: transform .5s ease-in, opacity 0s .5s;
+    transition: transform var(--circle-transition) ease-out;
+}
+
+.ease-in {
+    transition: transform var(--circle-transition) ease-in;
+}
+
+.ease-out {
+    transition: transform var(--circle-transition) ease-out;
 }
 
 .rotate {
