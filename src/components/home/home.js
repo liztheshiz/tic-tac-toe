@@ -9,18 +9,19 @@ export default function Home() {
     const buttonHover = (letter) => {
         let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
         let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
+        rectangleLeftWrapper.classList.add("ease-out");
         rectangleRightWrapper.classList.add("rotate", "ease-in");
 
-        setTimeout(() => { rectangleLeftWrapper.classList.add("rotate", "ease-out"); rectangleRightWrapper.classList.add("disappear"); }, 400);
+        setTimeout(() => { rectangleLeftWrapper.classList.add("rotate"); rectangleRightWrapper.classList.add("disappear"); }, 400);
     }
 
     const buttonUnHover = (letter) => {
         let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
         let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
         rectangleLeftWrapper.classList.remove("rotate", "ease-out");
+        rectangleRightWrapper.classList.remove("ease-in");
 
-
-        setTimeout(() => { rectangleRightWrapper.classList.remove("rotate", "ease-in", "disappear"); }, 400);
+        setTimeout(() => { rectangleRightWrapper.classList.remove("rotate", "disappear"); }, 400);
     }
 
     return (
