@@ -6,28 +6,18 @@ import Col from 'react-bootstrap/Col';
 import './Home.css';
 
 export default function Home() {
-    // DOM ELEMENTS
-
-
     const buttonHover = () => {
         let rectangleLeftWrapper = document.querySelector(".rectangle-left-wrapper");
         let rectangleRightWrapper = document.querySelector(".rectangle-right-wrapper");
-        //rectangleLeftWrapper.classList.add("red");
-        /*rectangleLeftWrapper.classList.add("rotate");
-        rectangleRightWrapper.classList.add("rotate");
-
-        // Disappears right rectangle (now on left) to "reveal" left circle
-        setTimeout(disappearRight, 1000);*/
+        rectangleLeftWrapper.classList.add("rotate");
+        rectangleRightWrapper.classList.add("rotate", "disappear");
     }
 
     const buttonUnHover = () => {
-
-    }
-
-    // Makes right rectangle (now on left) disappear
-    function disappearRight() {
+        let rectangleLeftWrapper = document.querySelector(".rectangle-left-wrapper");
         let rectangleRightWrapper = document.querySelector(".rectangle-right-wrapper");
-        //rectangleRightWrapper.classList.add("disappear");
+        rectangleLeftWrapper.classList.remove("rotate");
+        rectangleRightWrapper.classList.remove("rotate", "disappear");
     }
 
     return (
@@ -41,7 +31,7 @@ export default function Home() {
             </Row >
             <Row className="buttons mt-5 justify-content-center">
                 <Col xs={3} className="justify-content-center button-col text-center">
-                    <div className="button-container" onMouseEnter={buttonHover}>
+                    <div className="button-container" onMouseEnter={buttonHover} onMouseLeave={buttonUnHover}>
                         <div className="circle-container">
                             <div className="circle">
                                 <div className="circle-left"></div>
@@ -54,7 +44,7 @@ export default function Home() {
                                 <div className="rectangle-right"></div>
                             </div>
                         </div>
-                        <Link to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button" onMouseLeave={buttonUnHover}>X</button></Link>
+                        <Link to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button">X</button></Link>
                     </div>
                 </Col>
                 <Col xs={3} className="justify-content-center button-col text-center"><Link to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link></Col>
