@@ -48,7 +48,7 @@ export default function Home() {
                                 <div className="rectangle-right"></div>
                             </div>
                         </div>
-                        <Link to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button">X</button></Link>
+                        <Link className="link" to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button">X</button></Link>
                     </div>
                 </Col>
                 <Col xs={3} className="justify-content-center button-col text-center">
@@ -65,7 +65,7 @@ export default function Home() {
                                 <div className="rectangle-right"></div>
                             </div>
                         </div>
-                        <Link to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link>
+                        <Link className="link" to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link>
                     </div>
                 </Col>
             </Row>

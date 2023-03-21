@@ -97,6 +97,10 @@
     cursor: pointer
 }
 
+.link {
+    z-index: 1;
+}
+
 .start-button {
     font-size: 50px;
     font-weight: 500;
