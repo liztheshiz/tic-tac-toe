@@ -9,19 +9,21 @@ export default function Home() {
     const buttonHover = (letter) => {
         let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
         let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
-        rectangleLeftWrapper.classList.add("ease-out");
-        rectangleRightWrapper.classList.add("rotate", "ease-in");
 
-        setTimeout(() => { rectangleLeftWrapper.classList.add("rotate"); rectangleRightWrapper.classList.add("disappear"); }, 400);
+        rectangleLeftWrapper.classList.add("rotate", "delay", "ease-out");
+
+        rectangleRightWrapper.classList.remove("delay");
+        rectangleRightWrapper.classList.add("rotate", "disappear", "ease-in");
     }
 
     const buttonUnHover = (letter) => {
         let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
         let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
-        rectangleLeftWrapper.classList.remove("rotate", "ease-out");
-        rectangleRightWrapper.classList.remove("ease-in");
 
-        setTimeout(() => { rectangleRightWrapper.classList.remove("rotate", "disappear"); }, 400);
+        rectangleLeftWrapper.classList.remove("rotate", "delay", "ease-out");
+
+        rectangleRightWrapper.classList.add("delay");
+        rectangleRightWrapper.classList.remove("rotate", "disappear", "ease-in");
     }
 
     return (
