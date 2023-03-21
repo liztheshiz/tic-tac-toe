@@ -7,7 +7,6 @@ import './Home.css';
 
 export default function Home() {
     const buttonHover = (letter) => {
-        console.log(`letter: ${letter}`);
         let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
         let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
         rectangleRightWrapper.classList.add("rotate", "ease-in");
