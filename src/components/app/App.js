@@ -19,7 +19,6 @@ import GameOverView from "../game-over-view/GameOverView";
 
 const AnimatedSwitch = () => {
     const location = useLocation();
-
     console.log("location", location);
 
     const [transitionName, setTransitionName] = useState("next");
