@@ -28,13 +28,15 @@ const AnimatedSwitch = () => {
             <CSSTransition
                 key={location.pathname}
                 classNames={transitionName}
-                timeout={1000}
+                timeout={2000}
             >
-                <Routes location={location}>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/play" element={<Wrapper />} />
-                    <Route path="/gameover" element={<GameOverView />} />
-                </Routes>
+                <div className="fixed-position">
+                    <Routes location={location}>
+                        <Route path="/" element={<Home />} />
+                        <Route path="/play" element={<Wrapper />} />
+                        <Route path="/gameover" element={<GameOverView />} />
+                    </Routes>
+                </div>
             </CSSTransition>
         </TransitionGroup>
     );
