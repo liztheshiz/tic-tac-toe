@@ -43,10 +43,10 @@ export default function Home() {
                                 <div className="circle-left"></div>
                                 <div className="circle-right"></div>
                             </div>
-                            <div className="rectangle-left-wrapper rectangle-left-wrapper-x ease-out">
+                            <div className="rectangle-left-wrapper rectangle-left-wrapper-x">
                                 <div className="rectangle-left"></div>
                             </div>
-                            <div className="rectangle-right-wrapper rectangle-right-wrapper-x ease-in">
+                            <div className="rectangle-right-wrapper rectangle-right-wrapper-x">
                                 <div className="rectangle-right"></div>
                             </div>
                         </div>
@@ -60,10 +60,10 @@ export default function Home() {
                                 <div className="circle-left"></div>
                                 <div className="circle-right"></div>
                             </div>
-                            <div className="rectangle-left-wrapper rectangle-left-wrapper-o ease-out">
+                            <div className="rectangle-left-wrapper rectangle-left-wrapper-o">
                                 <div className="rectangle-left"></div>
                             </div>
-                            <div className="rectangle-right-wrapper rectangle-right-wrapper-o ease-in">
+                            <div className="rectangle-right-wrapper rectangle-right-wrapper-o">
                                 <div className="rectangle-right"></div>
                             </div>
                         </div>
