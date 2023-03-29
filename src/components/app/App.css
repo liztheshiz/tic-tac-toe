@@ -12,8 +12,13 @@
     justify-content: center;
 }
 
-/* TRANSITIONS */
-/* Enter transitions */
+
+/*  >>><<<
+    TRANSITIONS
+    >>><<< */
+
+/* ENTER TRANSITIONS>>> */
+/* Home */
 .next-enter .main-title {
     transform: translateX(-1000px);
 }
@@ -32,6 +37,7 @@
     transition: transform 0.8s 1.3s cubic-bezier(0.3, 1.2, 1, 1);
 }
 
+/* GameView */
 .next-enter .message-board {
     transform: translateY(-500px);
 }
@@ -50,7 +56,12 @@
     transition: transform 1s 1.1s cubic-bezier(0.1, 1.25, 1, 1);
 }
 
-/* Exit transitions */
+/* GameOverView */
+
+/* <<< */
+
+/* EXIT TRANSITIONS>>> */
+/* Home */
 .next-exit-active .main-title {
     transform: translateX(-1000px);
     transition: transform 1s 0.1s cubic-bezier(1, -0.2, 0.75, 0.75);
@@ -61,6 +72,7 @@
     transition: transform 0.8s 0.3s cubic-bezier(1, -0.2, 0.75, 0.75);
 }
 
+/* GameView */
 .next-exit-active .message-board {
     transform: translateY(-500px);
     transition: transform 1s 0.1s cubic-bezier(1, -0.2, 0.75, 0.75);
@@ -70,3 +82,7 @@
     transform: translateY(700px);
     transition: transform 1s 0.1s cubic-bezier(1, -0.2, 0.75, 0.75);
 }
+
+/* GameOverView */
+
+/* <<< */
