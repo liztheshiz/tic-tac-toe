@@ -28,7 +28,7 @@ const AnimatedSwitch = () => {
             <CSSTransition
                 key={location.pathname}
                 classNames={transitionName}
-                timeout={2000}
+                timeout={2100}
             >
                 <div className="fixed-position">
                     <Routes location={location}>
