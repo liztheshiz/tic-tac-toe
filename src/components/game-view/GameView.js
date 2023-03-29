@@ -130,7 +130,7 @@ class GameView extends React.Component {
 
         // X always goes first
         if (this.props.location.state.player == 'O' && this.state.squares.length == 9) {
-            setTimeout(this.aiTurn, 900);
+            setTimeout(this.aiTurn, 2600);
         }
     }
 
