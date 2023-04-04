@@ -1,7 +1,6 @@
 :root {
     --circle-radius: 70px;
     --half-circle-radius: 35px;
-    --ex-length: 120px;
 
     --circle-transition: .4s;
     --half-circle-transition: .2s;
@@ -211,7 +210,7 @@
     position: absolute;
     box-sizing: border-box;
     opacity: .8;
-    transform: translate(-22px, 23px) rotate(45deg);
+    transform: translate(-22px, 22px) rotate(45deg);
     z-index: -4;
 }
 
@@ -221,7 +220,7 @@
     border-top: 7px solid var(--text-color);
     box-sizing: border-box;
     position: absolute;
-    transform: translate(22px, 23px) rotate(-45deg);
+    transform: translate(22px, 22px) rotate(-45deg);
     opacity: 0.8;
     z-index: -2;
 }
