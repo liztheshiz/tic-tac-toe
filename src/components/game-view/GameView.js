@@ -135,8 +135,8 @@ class GameView extends React.Component {
     }
 
     render() {
-        const { whoseTurn, winState } = this.state;
-        const { player, opponent } = this.props.location.state;
+        const { whoseTurn } = this.state;
+        const { player } = this.props.location.state;
 
         return (
             <Col xs={12} md={10} className="GameView text-center" data-testid="game-view">
