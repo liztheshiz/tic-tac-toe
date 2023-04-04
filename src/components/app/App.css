@@ -38,6 +38,15 @@
 }
 
 /* GameView */
+.next-enter .home-button-row {
+    opacity: 0;
+}
+
+.next-enter-active .home-button-row {
+    opacity: 0.8;
+    transition: opacity 0.5s 1.5s ease-in;
+}
+
 .next-enter .message-board {
     transform: translateY(-500px);
 }
@@ -81,6 +90,11 @@
 }
 
 /* GameView */
+.next-exit-active .home-button-row {
+    opacity: 0;
+    transition: opacity 0.3s 0.3s ease-out;
+}
+
 .next-exit-active .message-board {
     transform: translateY(-500px);
     transition: transform 1s 0.1s cubic-bezier(1, -0.2, 0.75, 0.75);

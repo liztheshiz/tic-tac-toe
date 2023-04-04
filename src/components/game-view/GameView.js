@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -140,6 +141,9 @@ class GameView extends React.Component {
 
         return (
             <Col xs={12} md={10} className="GameView text-center" data-testid="game-view">
+                <Row className="home-button-row">
+                    <Col xs={12}><Link className="home-button" to="/"><button className="home-button-button">Home</button></Link></Col>
+                </Row>
                 <Row className="message-board">
                     <Col>
                         <Row className="justify-content-center message-board__teams">
