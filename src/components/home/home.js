@@ -9,15 +9,29 @@ import './Home.css';
 export default function Home() {
     const [clicked, setClicked] = useState(false);
 
+    const circleAnimation = () => {
+        let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-x`);
+        let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-x`);
+
+        rectangleRightWrapper.classList.add("rotate", "delay", "ease-out");
+
+        rectangleLeftWrapper.classList.remove("delay");
+        rectangleLeftWrapper.classList.add("rotate", "disappear", "ease-in");
+    }
+
+    const exAnimation = () => {
+        let rectangleLeft = document.querySelector(`.rectangle-left-o`);
+        let rectangleRight = document.querySelector(`.rectangle-right-o`);
+
+        rectangleRight.classList.remove("small-delay");
+        rectangleRight.classList.add("translate");
+
+        rectangleLeft.classList.add("translate", "small-delay");
+    }
+
     const xButtonHover = () => {
         if (!clicked) {
-            let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-x`);
-            let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-x`);
-
-            rectangleRightWrapper.classList.add("rotate", "delay", "ease-out");
-
-            rectangleLeftWrapper.classList.remove("delay");
-            rectangleLeftWrapper.classList.add("rotate", "disappear", "ease-in");
+            circleAnimation();
         }
     }
 
@@ -35,13 +49,7 @@ export default function Home() {
 
     const oButtonHover = () => {
         if (!clicked) {
-            let rectangleLeft = document.querySelector(`.rectangle-left-o`);
-            let rectangleRight = document.querySelector(`.rectangle-right-o`);
-
-            rectangleRight.classList.remove("small-delay");
-            rectangleRight.classList.add("translate");
-
-            rectangleLeft.classList.add("translate", "small-delay");
+            exAnimation();
         }
     }
 
@@ -61,21 +69,9 @@ export default function Home() {
         setClicked(true);
 
         if (bool) {
-            let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-x`);
-            let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-x`);
-
-            rectangleLeftWrapper.classList.remove("delay");
-            rectangleRightWrapper.classList.remove("delay");
-            rectangleLeftWrapper.classList.add("disappear-fade", "disappear");
-            rectangleRightWrapper.classList.add("disappear-fade", "disappear");
+            circleAnimation();
         } else {
-            let rectangleLeft = document.querySelector(`.rectangle-left-o`);
-            let rectangleRight = document.querySelector(`.rectangle-right-o`);
-
-            rectangleLeft.classList.remove("delay");
-            rectangleRight.classList.remove("delay");
-            rectangleLeft.classList.add("disappear-fade", "disappear");
-            rectangleRight.classList.add("disappear-fade", "disappear");
+            exAnimation();
         }
     }
 
