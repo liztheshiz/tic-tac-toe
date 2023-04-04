@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Row from 'react-bootstrap/Row';
@@ -6,44 +7,76 @@ import Col from 'react-bootstrap/Col';
 import './Home.css';
 
 export default function Home() {
+    const [clicked, setClicked] = useState(false);
+
     const xButtonHover = () => {
-        let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-x`);
-        let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-x`);
+        if (!clicked) {
+            let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-x`);
+            let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-x`);
 
-        rectangleRightWrapper.classList.add("rotate", "delay", "ease-out");
+            rectangleRightWrapper.classList.add("rotate", "delay", "ease-out");
 
-        rectangleLeftWrapper.classList.remove("delay");
-        rectangleLeftWrapper.classList.add("rotate", "disappear", "ease-in");
+            rectangleLeftWrapper.classList.remove("delay");
+            rectangleLeftWrapper.classList.add("rotate", "disappear", "ease-in");
+        }
     }
 
     const xButtonUnHover = () => {
-        let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-x`);
-        let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-x`);
+        if (!clicked) {
+            let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-x`);
+            let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-x`);
 
-        rectangleRightWrapper.classList.remove("rotate", "delay", "ease-out");
+            rectangleRightWrapper.classList.remove("rotate", "delay", "ease-out");
 
-        rectangleLeftWrapper.classList.add("delay");
-        rectangleLeftWrapper.classList.remove("rotate", "disappear", "ease-in");
+            rectangleLeftWrapper.classList.add("delay");
+            rectangleLeftWrapper.classList.remove("rotate", "disappear", "ease-in");
+        }
     }
 
     const oButtonHover = () => {
-        let rectangleLeft = document.querySelector(`.rectangle-left-o`);
-        let rectangleRight = document.querySelector(`.rectangle-right-o`);
+        if (!clicked) {
+            let rectangleLeft = document.querySelector(`.rectangle-left-o`);
+            let rectangleRight = document.querySelector(`.rectangle-right-o`);
 
-        rectangleRight.classList.remove("small-delay");
-        rectangleRight.classList.add("translate");
+            rectangleRight.classList.remove("small-delay");
+            rectangleRight.classList.add("translate");
 
-        rectangleLeft.classList.add("translate", "small-delay");
+            rectangleLeft.classList.add("translate", "small-delay");
+        }
     }
 
     const oButtonUnHover = () => {
-        let rectangleLeft = document.querySelector(`.rectangle-left-o`);
-        let rectangleRight = document.querySelector(`.rectangle-right-o`);
+        if (!clicked) {
+            let rectangleLeft = document.querySelector(`.rectangle-left-o`);
+            let rectangleRight = document.querySelector(`.rectangle-right-o`);
 
-        rectangleLeft.classList.remove("translate", "small-delay");
+            rectangleLeft.classList.remove("translate", "small-delay");
 
-        rectangleRight.classList.add("small-delay");
-        rectangleRight.classList.remove("translate");
+            rectangleRight.classList.add("small-delay");
+            rectangleRight.classList.remove("translate");
+        }
+    }
+
+    const handleClickX = (bool) => {
+        setClicked(true);
+
+        if (bool) {
+            let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-x`);
+            let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-x`);
+
+            rectangleLeftWrapper.classList.remove("delay");
+            rectangleRightWrapper.classList.remove("delay");
+            rectangleLeftWrapper.classList.add("disappear-fade", "disappear");
+            rectangleRightWrapper.classList.add("disappear-fade", "disappear");
+        } else {
+            let rectangleLeft = document.querySelector(`.rectangle-left-o`);
+            let rectangleRight = document.querySelector(`.rectangle-right-o`);
+
+            rectangleLeft.classList.remove("delay");
+            rectangleRight.classList.remove("delay");
+            rectangleLeft.classList.add("disappear-fade", "disappear");
+            rectangleRight.classList.add("disappear-fade", "disappear");
+        }
     }
 
     return (
@@ -57,7 +90,7 @@ export default function Home() {
             </Row >
             <Row className="buttons mt-5 justify-content-center">
                 <Col xs={3} className="justify-content-center button-col text-center">
-                    <div className="button-container" onMouseEnter={xButtonHover} onMouseLeave={xButtonUnHover}>
+                    <div className="button-container" onMouseEnter={xButtonHover} onMouseLeave={xButtonUnHover} onClick={() => handleClickX(true)}>
                         <div className="circle-container">
                             <div className="circle">
                                 <div className="circle-left"></div>
@@ -70,11 +103,11 @@ export default function Home() {
                                 <div className="rectangle-right"></div>
                             </div>
                         </div>
-                        <Link className="link" to="/play" state={{ player: "X", opponent: "O" }}><button className="start-button">X</button></Link>
+                        <Link className="link" to="/play" state={{ player: "X", opponent: "O" }}><button tabindex="-1" className="start-button">X</button></Link>
                     </div>
                 </Col>
                 <Col xs={3} className="justify-content-center button-col text-center">
-                    <div className="button-container" onMouseEnter={oButtonHover} onMouseLeave={oButtonUnHover}>
+                    <div className="button-container" onMouseEnter={oButtonHover} onMouseLeave={oButtonUnHover} onClick={() => handleClickX(false)}>
                         <div className="ex-container">
                             <div className="ex">
                                 <div className="ex-left"></div>
@@ -83,7 +116,7 @@ export default function Home() {
                             <div className="rectangle-left-o"></div>
                             <div className="rectangle-right-o"></div>
                         </div>
-                        <Link className="link" to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link>
+                        <Link className="link" to="/play" state={{ player: "O", opponent: "X" }}><button tabindex="-1" className="start-button">O</button></Link>
                     </div>
                 </Col>
             </Row >
