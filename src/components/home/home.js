@@ -6,9 +6,9 @@ import Col from 'react-bootstrap/Col';
 import './Home.css';
 
 export default function Home() {
-    const xButtonHover = (letter) => {
-        let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
-        let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
+    const xButtonHover = () => {
+        let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-x`);
+        let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-x`);
 
         rectangleRightWrapper.classList.add("rotate", "delay", "ease-out");
 
@@ -16,9 +16,9 @@ export default function Home() {
         rectangleLeftWrapper.classList.add("rotate", "disappear", "ease-in");
     }
 
-    const xButtonUnHover = (letter) => {
-        let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
-        let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
+    const xButtonUnHover = () => {
+        let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-x`);
+        let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-x`);
 
         rectangleRightWrapper.classList.remove("rotate", "delay", "ease-out");
 
@@ -57,7 +57,7 @@ export default function Home() {
             </Row >
             <Row className="buttons mt-5 justify-content-center">
                 <Col xs={3} className="justify-content-center button-col text-center">
-                    <div className="button-container" onMouseEnter={() => xButtonHover('x')} onMouseLeave={() => xButtonUnHover('x')}>
+                    <div className="button-container" onMouseEnter={xButtonHover} onMouseLeave={xButtonUnHover}>
                         <div className="circle-container">
                             <div className="circle">
                                 <div className="circle-left"></div>
@@ -74,7 +74,7 @@ export default function Home() {
                     </div>
                 </Col>
                 <Col xs={3} className="justify-content-center button-col text-center">
-                    <div className="button-container" onMouseEnter={() => oButtonHover()} onMouseLeave={() => oButtonUnHover()}>
+                    <div className="button-container" onMouseEnter={oButtonHover} onMouseLeave={oButtonUnHover}>
                         <div className="ex-container">
                             <div className="ex">
                                 <div className="ex-left"></div>
@@ -86,7 +86,7 @@ export default function Home() {
                         <Link className="link" to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link>
                     </div>
                 </Col>
-            </Row>
+            </Row >
         </Col >
     )
 }
