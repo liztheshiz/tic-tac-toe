@@ -267,10 +267,6 @@
     opacity: 0;
 }
 
-.disappear-fade {
-    transition: opacity 2s ease-out;
-}
-
 .translate {
     transform: translateY(70px);
 }
