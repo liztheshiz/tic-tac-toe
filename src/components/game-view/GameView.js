@@ -142,7 +142,7 @@ class GameView extends React.Component {
         return (
             <Col xs={12} md={10} className="GameView text-center" data-testid="game-view">
                 <Row className="home-button-row">
-                    <Col xs={12}><Link className="home-button" to="/"><button className="home-button-button">Quit</button></Link></Col>
+                    <Col xs={12}><Link className="home-button" to="/"><button className="home-button-button">&#8592; Home</button></Link></Col>
                 </Row>
                 <Row className="message-board">
                     <Col>
