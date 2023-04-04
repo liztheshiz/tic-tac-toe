@@ -84,6 +84,10 @@
     width: 100%
 }
 
+.button-col:first-child {
+    border-right: 5px solid var(--text-color);
+}
+
 .letter {
     text-align: center;
     letter-spacing: 0;
