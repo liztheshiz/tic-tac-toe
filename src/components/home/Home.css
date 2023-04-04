@@ -1,9 +1,10 @@
 :root {
     --circle-radius: 70px;
     --half-circle-radius: 35px;
+    --ex-length: 120px;
 
-    /* WARNING: If you change this value, you MUST change the Timout functions in Home.js to correspond! */
     --circle-transition: .4s;
+    --half-circle-transition: .2s;
 }
 
 .Home {
@@ -191,8 +192,64 @@
     transition: transform var(--circle-transition) ease-out, opacity 0s var(--circle-transition);
 }
 
+.ex-container {
+    height: var(--circle-radius);
+    width: var(--circle-radius);
+    position: absolute;
+}
+
+.ex {
+    width: var(--circle-radius);
+    height: var(--circle-radius);
+    position: absolute;
+}
+
+.ex-left {
+    width: var(--circle-radius);
+    height: var(--circle-radius);
+    border-top: 7px solid var(--text-color);
+    position: absolute;
+    box-sizing: border-box;
+    opacity: .8;
+    transform: translate(-22px, 23px) rotate(45deg);
+    z-index: -4;
+}
+
+.ex-right {
+    width: var(--circle-radius);
+    height: var(--circle-radius);
+    border-top: 7px solid var(--text-color);
+    box-sizing: border-box;
+    position: absolute;
+    transform: translate(22px, 23px) rotate(-45deg);
+    opacity: 0.8;
+    z-index: -2;
+}
+
+.rectangle-left-o {
+    width: var(--circle-radius);
+    height: var(--circle-radius);
+    position: absolute;
+    transition: transform var(--circle-transition) linear;
+    z-index: -3;
+    background-color: var(--background-color);
+}
+
+.rectangle-right-o {
+    width: var(--circle-radius);
+    height: var(--circle-radius);
+    position: absolute;
+    transition: transform var(--circle-transition) linear;
+    z-index: -1;
+    background-color: var(--background-color);
+}
+
 .delay {
     transition-delay: var(--circle-transition);
+}
+
+.small-delay {
+    transition-delay: var(--half-circle-transition);
 }
 
 .ease-in {
@@ -209,4 +266,8 @@
 
 .disappear {
     opacity: 0;
+}
+
+.translate {
+    transform: translateY(70px);
 }

@@ -6,7 +6,7 @@ import Col from 'react-bootstrap/Col';
 import './Home.css';
 
 export default function Home() {
-    const buttonHover = (letter) => {
+    const xButtonHover = (letter) => {
         let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
         let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
 
@@ -16,7 +16,7 @@ export default function Home() {
         rectangleLeftWrapper.classList.add("rotate", "disappear", "ease-in");
     }
 
-    const buttonUnHover = (letter) => {
+    const xButtonUnHover = (letter) => {
         let rectangleLeftWrapper = document.querySelector(`.rectangle-left-wrapper-${letter}`);
         let rectangleRightWrapper = document.querySelector(`.rectangle-right-wrapper-${letter}`);
 
@@ -24,6 +24,26 @@ export default function Home() {
 
         rectangleLeftWrapper.classList.add("delay");
         rectangleLeftWrapper.classList.remove("rotate", "disappear", "ease-in");
+    }
+
+    const oButtonHover = () => {
+        let rectangleLeft = document.querySelector(`.rectangle-left-o`);
+        let rectangleRight = document.querySelector(`.rectangle-right-o`);
+
+        rectangleRight.classList.remove("small-delay");
+        rectangleRight.classList.add("translate");
+
+        rectangleLeft.classList.add("translate", "small-delay");
+    }
+
+    const oButtonUnHover = () => {
+        let rectangleLeft = document.querySelector(`.rectangle-left-o`);
+        let rectangleRight = document.querySelector(`.rectangle-right-o`);
+
+        rectangleLeft.classList.remove("translate", "small-delay");
+
+        rectangleRight.classList.add("small-delay");
+        rectangleRight.classList.remove("translate");
     }
 
     return (
@@ -37,7 +57,7 @@ export default function Home() {
             </Row >
             <Row className="buttons mt-5 justify-content-center">
                 <Col xs={3} className="justify-content-center button-col text-center">
-                    <div className="button-container" onMouseEnter={() => buttonHover('x')} onMouseLeave={() => buttonUnHover('x')}>
+                    <div className="button-container" onMouseEnter={() => xButtonHover('x')} onMouseLeave={() => xButtonUnHover('x')}>
                         <div className="circle-container">
                             <div className="circle">
                                 <div className="circle-left"></div>
@@ -54,18 +74,14 @@ export default function Home() {
                     </div>
                 </Col>
                 <Col xs={3} className="justify-content-center button-col text-center">
-                    <div className="button-container" onMouseEnter={() => buttonHover('o')} onMouseLeave={() => buttonUnHover('o')}>
-                        <div className="circle-container">
-                            <div className="circle">
-                                <div className="circle-left"></div>
-                                <div className="circle-right"></div>
+                    <div className="button-container" onMouseEnter={() => oButtonHover()} onMouseLeave={() => oButtonUnHover()}>
+                        <div className="ex-container">
+                            <div className="ex">
+                                <div className="ex-left"></div>
+                                <div className="ex-right"></div>
                             </div>
-                            <div className="rectangle-left-wrapper rectangle-left-wrapper-o">
-                                <div className="rectangle-left"></div>
-                            </div>
-                            <div className="rectangle-right-wrapper rectangle-right-wrapper-o">
-                                <div className="rectangle-right"></div>
-                            </div>
+                            <div className="rectangle-left-o"></div>
+                            <div className="rectangle-right-o"></div>
                         </div>
                         <Link className="link" to="/play" state={{ player: "O", opponent: "X" }}><button className="start-button">O</button></Link>
                     </div>
