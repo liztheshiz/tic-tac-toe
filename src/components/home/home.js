@@ -76,12 +76,24 @@ export default function Home() {
     }
 
     return (
-        <Col xs={5} xl={4} className="Home">
+        <Col className="Home">
             <Row className="main-title justify-content-center text-left">
-                <Col xs={12} md={12} lg={9} xl={9}>
-                    <Row className="main-title__row main-title__row__1"><Col className="letter" xs={4}>T</Col><Col className="letter" xs={4}>I</Col><Col className="letter" xs={4}>C</Col></Row>
-                    <Row className="main-title__row main-title__row__2"><Col className="letter" xs={4}>T</Col><Col className="letter" xs={4}>A</Col><Col className="letter" xs={4}>C</Col></Row>
-                    <Row className="main-title__row main-title__row__3"><Col className="letter" xs={4}>T</Col><Col className="letter" xs={4}>O</Col><Col className="letter" xs={4}>E</Col></Row>
+                <Col className="main-title__row-container">
+                    <Row className="main-title__row main-title__row__1">
+                        <Col className="letter">T</Col>
+                        <Col className="letter">I</Col>
+                        <Col className="letter">C</Col>
+                    </Row>
+                    <Row className="main-title__row main-title__row__2">
+                        <Col className="letter">T</Col>
+                        <Col className="letter">A</Col>
+                        <Col className="letter">C</Col>
+                    </Row>
+                    <Row className="main-title__row main-title__row__3">
+                        <Col className="letter">T</Col>
+                        <Col className="letter">O</Col>
+                        <Col className="letter">E</Col>
+                    </Row>
                 </Col>
             </Row >
             <Row className="buttons mt-5 justify-content-center">

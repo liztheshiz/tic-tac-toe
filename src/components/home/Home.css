@@ -15,6 +15,10 @@
     font-weight: 900;
 }
 
+.main-title__row-container {
+    max-width: 350px !important;
+}
+
 .main-title__row {
     line-height: 110px;
     position: relative;
@@ -91,6 +95,7 @@
 .letter {
     text-align: center;
     letter-spacing: 0;
+    width: 33%;
 }
 
 .button-container {
@@ -269,4 +274,61 @@
 
 .translate {
     transform: translateY(70px);
+}
+
+/* RESPONSIVE ELEMENTS */
+@media all and (max-width: 640px) {
+    .main-title {
+        font-size: 80px;
+    }
+
+    .main-title__row-container {
+        max-width: 270px !important;
+    }
+
+    .main-title__row {
+        line-height: 86px;
+    }
+
+    .main-title__row__1::after {
+        transform: translateY(39px);
+    }
+
+    .main-title__row__2::after {
+        transform: translate(-40px, 42px) rotate(315deg);
+    }
+
+    .main-title__row__3::after {
+        transform: translateY(39px);
+    }
+}
+
+@media all and (max-width: 440px) {
+    .main-title {
+        font-size: 54px;
+    }
+
+    .main-title__row-container {
+        max-width: 210px !important;
+    }
+
+    .main-title__row {
+        line-height: 63px;
+    }
+
+    .main-title__row__1::after {
+        transform: translateY(29px);
+        height: 5px;
+    }
+
+    .main-title__row__2::after {
+        transform: translate(-26px, 30px) rotate(317deg);
+        width: 126%;
+        height: 5px;
+    }
+
+    .main-title__row__3::after {
+        transform: translateY(29px);
+        height: 5px;
+    }
 }
