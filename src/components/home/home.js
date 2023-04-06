@@ -97,35 +97,39 @@ export default function Home() {
                 </Col>
             </Row >
             <Row className="buttons mt-5 justify-content-center">
-                <Col xs={3} className="justify-content-center button-col text-center">
-                    <div className="button-container" onMouseEnter={xButtonHover} onMouseLeave={xButtonUnHover} onClick={() => handleClickX(true)}>
-                        <div className="circle-container">
-                            <div className="circle">
-                                <div className="circle-left"></div>
-                                <div className="circle-right"></div>
+                <Col xs={6} md={7} xl={8} xxl={10}>
+                    <Row className="justify-content-center">
+                        <Col xs={6} sm={4} md={3} lg={2} xxl={1} className="justify-content-center button-col text-center">
+                            <div className="button-container" onMouseEnter={xButtonHover} onMouseLeave={xButtonUnHover} onClick={() => handleClickX(true)}>
+                                <div className="circle-container">
+                                    <div className="circle">
+                                        <div className="circle-left"></div>
+                                        <div className="circle-right"></div>
+                                    </div>
+                                    <div className="rectangle-left-wrapper rectangle-left-wrapper-x">
+                                        <div className="rectangle-left"></div>
+                                    </div>
+                                    <div className="rectangle-right-wrapper rectangle-right-wrapper-x">
+                                        <div className="rectangle-right"></div>
+                                    </div>
+                                </div>
+                                <Link className="link" to="/play" state={{ player: "X", opponent: "O" }}><button tabindex="-1" className="start-button">X</button></Link>
                             </div>
-                            <div className="rectangle-left-wrapper rectangle-left-wrapper-x">
-                                <div className="rectangle-left"></div>
+                        </Col>
+                        <Col xs={6} sm={4} md={3} lg={2} xxl={1} className="justify-content-center button-col text-center">
+                            <div className="button-container" onMouseEnter={oButtonHover} onMouseLeave={oButtonUnHover} onClick={() => handleClickX(false)}>
+                                <div className="ex-container">
+                                    <div className="ex">
+                                        <div className="ex-left"></div>
+                                        <div className="ex-right"></div>
+                                    </div>
+                                    <div className="rectangle-left-o"></div>
+                                    <div className="rectangle-right-o"></div>
+                                </div>
+                                <Link className="link" to="/play" state={{ player: "O", opponent: "X" }}><button tabindex="-1" className="start-button">O</button></Link>
                             </div>
-                            <div className="rectangle-right-wrapper rectangle-right-wrapper-x">
-                                <div className="rectangle-right"></div>
-                            </div>
-                        </div>
-                        <Link className="link" to="/play" state={{ player: "X", opponent: "O" }}><button tabindex="-1" className="start-button">X</button></Link>
-                    </div>
-                </Col>
-                <Col xs={3} className="justify-content-center button-col text-center">
-                    <div className="button-container" onMouseEnter={oButtonHover} onMouseLeave={oButtonUnHover} onClick={() => handleClickX(false)}>
-                        <div className="ex-container">
-                            <div className="ex">
-                                <div className="ex-left"></div>
-                                <div className="ex-right"></div>
-                            </div>
-                            <div className="rectangle-left-o"></div>
-                            <div className="rectangle-right-o"></div>
-                        </div>
-                        <Link className="link" to="/play" state={{ player: "O", opponent: "X" }}><button tabindex="-1" className="start-button">O</button></Link>
-                    </div>
+                        </Col>
+                    </Row>
                 </Col>
             </Row >
         </Col >

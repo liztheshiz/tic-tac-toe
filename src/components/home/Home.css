@@ -32,7 +32,7 @@
     width: 0;
     height: 7px;
     border-radius: 3px;
-    transition: all .75s ease;
+    transition: width .75s ease;
 }
 
 .main-title__row__1:hover::after {
@@ -65,11 +65,10 @@
     z-index: -1;
     position: absolute;
     right: 0;
-    transition: all .75s ease;
+    transition: width .75s ease;
 }
 
 .main-title__row__2:hover::before {
-    opacity: 1;
     width: 0;
 }
 
@@ -81,7 +80,7 @@
     width: 0;
     height: 7px;
     border-radius: 3px;
-    transition: all .75s ease;
+    transition: width .75s ease;
 }
 
 .main-title__row__3:hover::after {
@@ -278,6 +277,14 @@
 
 /* RESPONSIVE ELEMENTS */
 @media all and (max-width: 640px) {
+    :root {
+        --circle-radius: 56px;
+        --half-circle-radius: 28px;
+
+        --circle-transition: .4s;
+        --half-circle-transition: .2s;
+    }
+
     .main-title {
         font-size: 80px;
     }
@@ -298,12 +305,37 @@
         transform: translate(-40px, 42px) rotate(315deg);
     }
 
+    .main-title__row__2::before {
+        transform: translateY(-100px);
+        height: 280px;
+    }
+
     .main-title__row__3::after {
         transform: translateY(39px);
+    }
+
+    .start-button {
+        font-size: 40px;
+    }
+
+    .ex-left {
+        transform: translate(-17px, 18px) rotate(45deg);
+    }
+
+    .ex-right {
+        transform: translate(17px, 18px) rotate(-45deg);
     }
 }
 
 @media all and (max-width: 440px) {
+    :root {
+        --circle-radius: 50px;
+        --half-circle-radius: 25px;
+
+        --circle-transition: .4s;
+        --half-circle-transition: .2s;
+    }
+
     .main-title {
         font-size: 54px;
     }
@@ -327,8 +359,41 @@
         height: 5px;
     }
 
+    .main-title__row__2::before {
+        transform: translateY(-80px);
+        height: 220px;
+    }
+
     .main-title__row__3::after {
         transform: translateY(29px);
         height: 5px;
+    }
+
+    .start-button {
+        font-size: 34px;
+    }
+
+    .button-col:first-child {
+        border-right: 3px solid var(--text-color);
+    }
+
+    .circle-left {
+        border: 5px solid var(--text-color);
+        border-right: 0;
+    }
+
+    .circle-right {
+        border: 5px solid var(--text-color);
+        border-left: 0;
+    }
+
+    .ex-left {
+        transform: translate(-16px, 16px) rotate(45deg);
+        border-top: 5px solid var(--text-color);
+    }
+
+    .ex-right {
+        transform: translate(16px, 16px) rotate(-45deg);
+        border-top: 5px solid var(--text-color);
     }
 }
