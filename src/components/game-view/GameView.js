@@ -70,10 +70,10 @@ class GameView extends React.Component {
         const colWin = (colSquares.item(0).innerText == colSquares.item(1).innerText) && (colSquares.item(1).innerText == colSquares.item(2).innerText);
 
         // Check for diagonal wins
-        const squareOnDiag1 = square.dataset.diag1 == true;
+        const squareOnDiag1 = square.dataset.diag1 == "true";
         const diag1Win = squareOnDiag1 && (diag1Squares.item(0).innerText == diag1Squares.item(1).innerText) && (diag1Squares.item(1).innerText == diag1Squares.item(2).innerText);
 
-        const squareOnDiag2 = square.dataset.diag2 == true;
+        const squareOnDiag2 = square.dataset.diag2 == "true";
         const diag2Win = squareOnDiag2 && (diag2Squares.item(0).innerText == diag2Squares.item(1).innerText) && (diag2Squares.item(1).innerText == diag2Squares.item(2).innerText);
 
         // Highlight winning squares and go to endgame if a win is present, or go to endgame if last square filled with no winner
