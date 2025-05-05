@@ -49,40 +49,31 @@ class GameView extends React.Component {
         this.handleEndgame = this.handleEndgame.bind(this);
 
         // Find row of given square
-        let row;
-        square.classList.forEach((i) => {
-            if (i.includes('row')) { row = i }
-        });
+        let row = square.dataset.row;
 
         // Find col of given square
-        let col;
-        square.classList.forEach((i) => {
-            if (i.includes('col')) { col = i }
-        });
+        let col = square.dataset.column;
 
         // Find diagonal squares (whether or not given square is in them; inclusion of given square check later)
-        let diag1Squares = document.querySelectorAll('.square1, .square5, .square9');
-        let diag2Squares = document.querySelectorAll('.square3, .square5, .square7');
+        let diag1Squares = document.querySelectorAll('[data-diag1="true"]');
+        let diag2Squares = document.querySelectorAll('[data-diag2="true"]');
 
         // Find given square number (converted to integer type)
-        let squareNum;
-        square.classList.forEach((i) => {
-            if (i.includes('square') && i.length == 7) { squareNum = parseInt(i.substring(i.length - 1)) }
-        });
+        let squareNum = square.dataset.square
 
         // Check row for win
-        const rowSquares = document.querySelectorAll(`.${row}`);
+        const rowSquares = document.querySelectorAll(`[data-row="${row}"]`);
         const rowWin = (rowSquares.item(0).innerText == rowSquares.item(1).innerText) && (rowSquares.item(1).innerText == rowSquares.item(2).innerText);
 
         // Check col for win
-        const colSquares = document.querySelectorAll(`.${col}`);
+        const colSquares = document.querySelectorAll(`[data-column="${col}"]`);
         const colWin = (colSquares.item(0).innerText == colSquares.item(1).innerText) && (colSquares.item(1).innerText == colSquares.item(2).innerText);
 
         // Check for diagonal wins
-        const squareOnDiag1 = squareNum == 1 || squareNum == 5 || squareNum == 9;
+        const squareOnDiag1 = square.dataset.diag1 == true;
         const diag1Win = squareOnDiag1 && (diag1Squares.item(0).innerText == diag1Squares.item(1).innerText) && (diag1Squares.item(1).innerText == diag1Squares.item(2).innerText);
 
-        const squareOnDiag2 = squareNum == 3 || squareNum == 5 || squareNum == 7;
+        const squareOnDiag2 = square.dataset.diag2 == true;
         const diag2Win = squareOnDiag2 && (diag2Squares.item(0).innerText == diag2Squares.item(1).innerText) && (diag2Squares.item(1).innerText == diag2Squares.item(2).innerText);
 
         // Highlight winning squares and go to endgame if a win is present, or go to endgame if last square filled with no winner
@@ -157,15 +148,15 @@ class GameView extends React.Component {
                 <Row className="justify-content-center mt-5">
                     <Col xs={6} className="justify-content-center text-center">
                         <div className="game-board justify-content-center" data-testid="game-board">
-                            <div className="game-board__square row1 col1 square1 empty" onClick={this.handleClick}></div>
-                            <div className="game-board__square row1 col2 square2 empty" onClick={this.handleClick}></div>
-                            <div className="game-board__square row1 col3 square3 empty" onClick={this.handleClick}></div>
-                            <div className="game-board__square row2 col1 square4 empty" onClick={this.handleClick}></div>
-                            <div className="game-board__square row2 col2 square5 empty" onClick={this.handleClick}></div>
-                            <div className="game-board__square row2 col3 square6 empty" onClick={this.handleClick}></div>
-                            <div className="game-board__square row3 col1 square7 empty" onClick={this.handleClick}></div>
-                            <div className="game-board__square row3 col2 square8 empty" onClick={this.handleClick}></div>
-                            <div className="game-board__square row3 col3 square9 empty" onClick={this.handleClick}></div>
+                            <div className="game-board__square empty" data-row="1" data-column="1" data-diag1="true" data-diag2="false" onClick={this.handleClick}></div>
+                            <div className="game-board__square empty" data-row="1" data-column="2" data-diag1="false" data-diag2="false" onClick={this.handleClick}></div>
+                            <div className="game-board__square empty" data-row="1" data-column="3" data-diag1="false" data-diag2="true" onClick={this.handleClick}></div>
+                            <div className="game-board__square empty" data-row="2" data-column="1" data-diag1="false" data-diag2="false" onClick={this.handleClick}></div>
+                            <div className="game-board__square empty" data-row="2" data-column="2" data-diag1="true" data-diag2="true" onClick={this.handleClick}></div>
+                            <div className="game-board__square empty" data-row="2" data-column="3" data-diag1="false" data-diag2="false" onClick={this.handleClick}></div>
+                            <div className="game-board__square empty" data-row="3" data-column="1" data-diag1="false" data-diag2="true" onClick={this.handleClick}></div>
+                            <div className="game-board__square empty" data-row="3" data-column="2" data-diag1="false" data-diag2="false" onClick={this.handleClick}></div>
+                            <div className="game-board__square empty" data-row="3" data-column="3" data-diag1="true" data-diag2="false" onClick={this.handleClick}></div>
                         </div>
                     </Col>
                 </Row>
